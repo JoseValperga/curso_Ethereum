@@ -1,0 +1,114 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_initialValue",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "get",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_value",
+						"type": "uint256"
+					}
+				],
+				"name": "set",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Un contrato sencillo que permite almacenar, actualizar y leer un número entero.      Incluye un constructor para inicializar el valor almacenado.",
+			"kind": "dev",
+			"methods": {
+				"constructor": {
+					"details": "Se ejecuta una sola vez, al momento de desplegar el contrato.",
+					"params": {
+						"_initialValue": "El valor inicial que se desea almacenar en `storedValue`."
+					}
+				},
+				"get()": {
+					"details": "Función de tipo `view`, ya que no modifica el estado del contrato.",
+					"returns": {
+						"_0": "El valor almacenado en la variable `storedValue`."
+					}
+				},
+				"set(uint256)": {
+					"details": "La función es pública y puede ser llamada por cualquier usuario.",
+					"params": {
+						"_value": "El valor entero que se desea almacenar."
+					}
+				}
+			},
+			"title": "SimpleStorage",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"constructor": {
+					"notice": "Constructor que inicializa el valor almacenado."
+				},
+				"get()": {
+					"notice": "Lee el valor almacenado en `storedValue`."
+				},
+				"set(uint256)": {
+					"notice": "Almacena un valor entero en la variable de estado `storedValue`."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ETH_KIPU/firstContract.sol": "SimpleStorage"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"ETH_KIPU/firstContract.sol": {
+			"keccak256": "0x5b8215cc9a1b47efdb3b629a25dddad5d3111a7d2f512d4fd5991e45101a0110",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5aba27144fbb5fe988a6bac6e4c7a6a1fb7e1f1ac80ec52214a28038b59379ec",
+				"dweb:/ipfs/Qmbh73J88eniBGxDjckuRcFcKWWLSCpFKuxCWgWtaUmJb7"
+			]
+		}
+	},
+	"version": 1
+}
