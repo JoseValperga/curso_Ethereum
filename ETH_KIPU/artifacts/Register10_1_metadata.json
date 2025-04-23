@@ -1,0 +1,124 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "addToWhiteList",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getWhiteList",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"name": "isInWhiteList",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"addToWhiteList(address)": {
+					"details": "Adds the address to the array if it is not already present",
+					"params": {
+						"addr": "The address to be added"
+					}
+				},
+				"getWhiteList()": {
+					"details": "Returns the entire array of white listed addresses",
+					"returns": {
+						"_0": "address[] The array of white listed addresses"
+					}
+				},
+				"isInWhiteList(address)": {
+					"details": "Loops through the array to check if the address exists",
+					"params": {
+						"addr": "The address to check"
+					},
+					"returns": {
+						"_0": "bool True if the address is in the white list, false otherwise"
+					}
+				}
+			},
+			"title": "Concepts: White List using Array",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"addToWhiteList(address)": {
+					"notice": "Add an address to the white list"
+				},
+				"getWhiteList()": {
+					"notice": "Get all addresses in the white list"
+				},
+				"isInWhiteList(address)": {
+					"notice": "Check if an address is in the white list"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ETH_KIPU/Register10_1.sol": "Register10_1"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"ETH_KIPU/Register10_1.sol": {
+			"keccak256": "0x0ec5abd8646b2d0ff18d184202aa72eb867d26662c69acc1788e9a8953aa94cc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5785a5ff96b4831aa69b0faa0a24c12b55618d5a94a217987193bf3b325e742b",
+				"dweb:/ipfs/QmbABK89T8xMShC39XUUFh1UiaRtN3o198sBfhxhfLLBgT"
+			]
+		}
+	},
+	"version": 1
+}

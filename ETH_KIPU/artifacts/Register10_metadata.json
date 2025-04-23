@@ -1,0 +1,204 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "myInfo",
+						"type": "string"
+					}
+				],
+				"name": "addInfo",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getOneInfo",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "listAllInfo",
+				"outputs": [
+					{
+						"internalType": "string[]",
+						"name": "",
+						"type": "string[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "start",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "end",
+						"type": "uint256"
+					}
+				],
+				"name": "listInfo",
+				"outputs": [
+					{
+						"internalType": "string[]",
+						"name": "",
+						"type": "string[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "newInfo",
+						"type": "string"
+					}
+				],
+				"name": "updateInfo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Solange Gueiros",
+			"kind": "dev",
+			"methods": {
+				"addInfo(string)": {
+					"details": "Get the position (index) where the string was stored and return it",
+					"params": {
+						"myInfo": "the new string to be stored"
+					},
+					"returns": {
+						"index": "where the string was stored"
+					}
+				},
+				"getOneInfo(uint256)": {
+					"details": "retrieves the string locate in the index of the array `storedInfos`",
+					"params": {
+						"index": "is the location in the array to be returned"
+					},
+					"returns": {
+						"_0": "the stored string in the index"
+					}
+				},
+				"listAllInfo()": {
+					"details": "retrieves the array of strings of the state variable `storedInfos`call the function listInfo from index 0 to info.length-1 ",
+					"returns": {
+						"_0": "an string array"
+					}
+				},
+				"listInfo(uint256,uint256)": {
+					"details": "retrieves the string locate in the index of the array `storedInfos`",
+					"params": {
+						"end": "is the final range in the array to be returned",
+						"start": "is the initial range in the array to be returned"
+					},
+					"returns": {
+						"_0": "infoAux - the stored string in the index"
+					}
+				},
+				"updateInfo(uint256,string)": {
+					"details": "Update `newInfo` in some index of the string array",
+					"params": {
+						"index": "is the position where the string will be updated",
+						"newInfo": "is the new string to be stored"
+					}
+				}
+			},
+			"title": "Concepts: Loop for on array",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"addInfo(string)": {
+					"notice": "Store `myInfo` at the end of the string array"
+				},
+				"getOneInfo(uint256)": {
+					"notice": "Return a stored string"
+				},
+				"listAllInfo()": {
+					"notice": "Return all the strings stored in the array using the function listInfo from beginning to end"
+				},
+				"listInfo(uint256,uint256)": {
+					"notice": "Return a range of stored strings It is a public function because it can be called inside (from listAllInfo) or outside"
+				},
+				"updateInfo(uint256,string)": {
+					"notice": "Update `newInfo` in some index of the string array"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ETH_KIPU/Register10.sol": "Register10"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"ETH_KIPU/Register10.sol": {
+			"keccak256": "0x7205801fcfe04ab630bddf4f50816162472baeee8fd2de98ebde67de9a1fcc0d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://83bd7ce900290aeb1de0dc80a4f7e3ce11f8b6e3eb9f462adbe4125262d1e1d8",
+				"dweb:/ipfs/QmTPiQvMtM7jwQFNziu2zvuyvooLAkD45PpAn7qxUmeNEa"
+			]
+		}
+	},
+	"version": 1
+}

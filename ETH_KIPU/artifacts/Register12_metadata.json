@@ -1,0 +1,105 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "getInfo",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					},
+					{
+						"internalType": "enum Register12.Colors",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum Register12.Colors",
+						"name": "myColor",
+						"type": "uint8"
+					},
+					{
+						"internalType": "string",
+						"name": "myInfo",
+						"type": "string"
+					}
+				],
+				"name": "setInfo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Solange Gueiros",
+			"kind": "dev",
+			"methods": {
+				"getInfo()": {
+					"details": "retrieves the string of the state variable `storedInfo` and the custom color selected from the enum Colors which is stored in infoColor",
+					"returns": {
+						"_0": "the stored string"
+					}
+				},
+				"setInfo(uint8,string)": {
+					"details": "update the variables `infoColor` and `storedInfo` with the parameters `myColor` and `myInfo`",
+					"params": {
+						"myColor": "the new color to store",
+						"myInfo": "the new string to store"
+					}
+				}
+			},
+			"title": "Concepts: enum",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"getInfo()": {
+					"notice": "Return the stored string and the color"
+				},
+				"setInfo(uint8,string)": {
+					"notice": "Store `myColor` and `myInfo`"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ETH_KIPU/Register12.sol": "Register12"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"ETH_KIPU/Register12.sol": {
+			"keccak256": "0x6659e16f29d095442f656457151539b114459f285467234f642ad3eb86c96687",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9a20c4e3aa2e32e0dd6be8d1007f759b0599d0248f75d3d5d4d8a06c6d038fbc",
+				"dweb:/ipfs/QmfQv7TS5UXE1LDc4VwFkzD8JPwSATFDq9tuqmtE8vjqEH"
+			]
+		}
+	},
+	"version": 1
+}
