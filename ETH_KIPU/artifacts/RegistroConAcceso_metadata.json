@@ -1,0 +1,191 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "valorInicial",
+						"type": "string"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "antiguo",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "nuevo",
+						"type": "string"
+					}
+				],
+				"name": "DataActualizada",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "nuevoDato",
+						"type": "string"
+					}
+				],
+				"name": "actualizarData",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "numeroDeCambios",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "obtenerData",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "nuevoAdmin",
+						"type": "address"
+					}
+				],
+				"name": "transferirAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Tu Nombre",
+			"events": {
+				"DataActualizada(string,string)": {
+					"params": {
+						"antiguo": "Valor antes de la actualización",
+						"nuevo": "Valor después de la actualización"
+					}
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"actualizarData(string)": {
+					"details": "Emitir el evento `DataActualizada` cuando se modifique el valor de `storedData`.Incrementar el contador de cambios después de actualizar la información.",
+					"params": {
+						"nuevoDato": "El nuevo dato que será almacenado."
+					}
+				},
+				"constructor": {
+					"details": "Constructor que asigna el rol de administrador al creador del contrato y establece un valor inicial para `storedData`.",
+					"params": {
+						"valorInicial": "El valor inicial para `storedData`."
+					}
+				},
+				"obtenerData()": {
+					"returns": {
+						"_0": "El dato almacenado en la variable de estado `storedData`."
+					}
+				},
+				"transferirAdmin(address)": {
+					"details": "Solo el administrador actual puede llamar a esta función.",
+					"params": {
+						"nuevoAdmin": "La dirección del nuevo administrador."
+					}
+				}
+			},
+			"title": "Registro con Acceso Controlado y Eventos",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"DataActualizada(string,string)": {
+					"notice": "Emite los valores antiguo y nuevo cuando se actualiza `storedData`"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"actualizarData(string)": {
+					"notice": "Permite al administrador actualizar el dato almacenado."
+				},
+				"obtenerData()": {
+					"notice": "Devuelve el dato almacenado actualmente."
+				},
+				"transferirAdmin(address)": {
+					"notice": "Permite al administrador transferir su rol a otro usuario."
+				}
+			},
+			"notice": "Este contrato permite almacenar y actualizar una cadena de texto, con control de acceso y eventos.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ETH_KIPU/Register08_EjercicioResuelto.sol": "RegistroConAcceso"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"ETH_KIPU/Register08_EjercicioResuelto.sol": {
+			"keccak256": "0x0b66f2a59441906a6ab8aff2c23ce205f208b1d1622191d4d2cbd4614009818d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://beabca6b49c0a5d8e7a01c1d4bc1e61c5e8a76797775023201e923f22814470d",
+				"dweb:/ipfs/Qma5JpMK8JJACykWHnA7QtyL8cX7xAczqLUpP4txzfhxxW"
+			]
+		}
+	},
+	"version": 1
+}
