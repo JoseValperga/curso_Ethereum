@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.19;
+pragma solidity ^0.8.19;
 
 /// @title Registro con Acceso Controlado y Eventos (Versión incompleta)
 /// @author [Jose Valperga]
@@ -11,7 +11,7 @@ contract RegistroConAcceso {
     address public owner;
 
     // Evento que se emitirá cuando la información sea actualizada
-    event InfoChange(string oldInfo, string newInfo);
+    event DataActualizada(string oldInfo, string newInfo);
 
     /**
      * @dev Constructor que asigna el rol de administrador al creador del contrato
@@ -39,7 +39,8 @@ contract RegistroConAcceso {
      */
     function actualizarData(string memory nuevoDato) external onlyOwner {
         // TODO: Emitir el evento DataActualizada con el valor antiguo y nuevo
-        emit InfoChange("oldInfo", nuevoDato);
+        string memory antiguo = storedData;
+        emit DataActualizada(antiguo, nuevoDato);
         // TODO: Actualizar el valor de `storedData` con `nuevoDato`
         storedData = nuevoDato;
         // TODO: Incrementar el contador `numeroDeCambios`
@@ -63,8 +64,8 @@ contract RegistroConAcceso {
      * TODO: Completar la función para permitir la transferencia de la propiedad.
      */
     function transferirAdmin(address nuevoAdmin) external onlyOwner {
+        // TODO: Asignar la dirección `nuevoAdmin` como el nuevo `admin`
         require(nuevoAdmin != address(0), "Direccion no valida");
         owner = nuevoAdmin;
-        // TODO: Asignar la dirección `nuevoAdmin` como el nuevo `admin`
     }
 }

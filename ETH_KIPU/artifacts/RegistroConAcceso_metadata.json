@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.19+commit.7dd6d404"
+		"version": "0.8.26+commit.8a97fa7a"
 	},
 	"language": "Solidity",
 	"output": {
@@ -166,7 +166,7 @@
 		"compilationTarget": {
 			"ETH_KIPU/Register08_EjercicioResuelto.sol": "RegistroConAcceso"
 		},
-		"evmVersion": "paris",
+		"evmVersion": "cancun",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -179,11 +179,11 @@
 	},
 	"sources": {
 		"ETH_KIPU/Register08_EjercicioResuelto.sol": {
-			"keccak256": "0x0b66f2a59441906a6ab8aff2c23ce205f208b1d1622191d4d2cbd4614009818d",
+			"keccak256": "0xa117fdc1b4d234bb520ae2990b38e2ed75c4fe2e52ca7eb2e25b3f880d0240a1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://beabca6b49c0a5d8e7a01c1d4bc1e61c5e8a76797775023201e923f22814470d",
-				"dweb:/ipfs/Qma5JpMK8JJACykWHnA7QtyL8cX7xAczqLUpP4txzfhxxW"
+				"bzz-raw://d24f01827def9c95cd10deb1fa0b6b7641bd5bed37f899319fd494e827664a5f",
+				"dweb:/ipfs/QmdXfUAeqUs6yL7Nyd9PocKYzd3tvaKYJuLY3mtFaxBfVm"
 			]
 		}
 	},
