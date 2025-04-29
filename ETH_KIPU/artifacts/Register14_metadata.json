@@ -1,0 +1,148 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "person",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "countChanges",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "oldInfo",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "newInfo",
+						"type": "string"
+					}
+				],
+				"name": "InfoChange",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "getInfo",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "info",
+								"type": "string"
+							},
+							{
+								"internalType": "enum Register14.Colors",
+								"name": "color",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint256",
+								"name": "countChanges",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Register14.InfoStruct",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum Register14.Colors",
+						"name": "myColor",
+						"type": "uint8"
+					},
+					{
+						"internalType": "string",
+						"name": "myInfo",
+						"type": "string"
+					}
+				],
+				"name": "setInfo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Solange Gueiros",
+			"kind": "dev",
+			"methods": {
+				"getInfo()": {
+					"details": "return the struct storedInfo for the msg.sender",
+					"returns": {
+						"_0": "the stored struct storedInfo"
+					}
+				},
+				"setInfo(uint8,string)": {
+					"details": "update the strict `storedInfo` with the parameters `myColor` and `myInfo`increase the counter",
+					"params": {
+						"myColor": "the new color to be stored",
+						"myInfo": "the new string to be stored"
+					}
+				}
+			},
+			"title": "Concepts: All together 2",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"getInfo()": {
+					"notice": "Return the struct storedInfo for the msg.sender"
+				},
+				"setInfo(uint8,string)": {
+					"notice": "Store `myColor` and `myInfo` Increase the counter which how many times storedInfo is updated emit an event with address, countChanges, oldInfo, newInfo"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ETH_KIPU/Register14_All.sol": "Register14"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"ETH_KIPU/Register14_All.sol": {
+			"keccak256": "0x59b21af8efea3da5179f6dd704844780f52846b914efa0dbfb3ea8951151029c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2ddcddf0754de8e91990965b020bb031e3f77b2046c28008bafac568272e3cfa",
+				"dweb:/ipfs/QmeRgr9qQhyCoQiUZdy9mpP7ucRDPZaAQnpXQ6ao6AgL88"
+			]
+		}
+	},
+	"version": 1
+}

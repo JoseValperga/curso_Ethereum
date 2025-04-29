@@ -1,0 +1,362 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "person",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "countChanges",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "oldInfo",
+						"type": "string"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "newInfo",
+						"type": "string"
+					}
+				],
+				"name": "InfoChange",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum Register15.Colors",
+						"name": "myColor",
+						"type": "uint8"
+					},
+					{
+						"internalType": "string",
+						"name": "myInfo",
+						"type": "string"
+					}
+				],
+				"name": "addInfo",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getMyInfoAtIndex",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "info",
+								"type": "string"
+							},
+							{
+								"internalType": "enum Register15.Colors",
+								"name": "color",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint256",
+								"name": "countChanges",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Register15.InfoStruct",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getOneInfo",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "info",
+								"type": "string"
+							},
+							{
+								"internalType": "enum Register15.Colors",
+								"name": "color",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint256",
+								"name": "countChanges",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Register15.InfoStruct",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "listAllInfo",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "info",
+								"type": "string"
+							},
+							{
+								"internalType": "enum Register15.Colors",
+								"name": "color",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint256",
+								"name": "countChanges",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Register15.InfoStruct[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum Register15.Colors",
+						"name": "myColor",
+						"type": "uint8"
+					}
+				],
+				"name": "setColor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "newInfo",
+						"type": "string"
+					}
+				],
+				"name": "setInfo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "storedInfos",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "info",
+						"type": "string"
+					},
+					{
+						"internalType": "enum Register15.Colors",
+						"name": "color",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "countChanges",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Solange Gueiros",
+			"kind": "dev",
+			"methods": {
+				"addInfo(uint8,string)": {
+					"details": "Get the position (index) where the struct was stored and return it",
+					"params": {
+						"myColor": "the new color to be stored",
+						"myInfo": "the new string to be stored"
+					},
+					"returns": {
+						"index": "where the struct was stored"
+					}
+				},
+				"getMyInfoAtIndex(uint256)": {
+					"details": "retrieves the struct locate in the index of the array `storedInfos` for the msg.sender address",
+					"params": {
+						"index": "is the location in the array to be returned"
+					},
+					"returns": {
+						"_0": "the struct in the index"
+					}
+				},
+				"getOneInfo(address,uint256)": {
+					"details": "retrieves the struct locate in the index of the array `storedInfos` for the address ptovided",
+					"params": {
+						"account": "- the account to get the struct",
+						"index": "is the location in the array to be returned"
+					},
+					"returns": {
+						"_0": "the struct in the index"
+					}
+				},
+				"listAllInfo(address)": {
+					"params": {
+						"account": "is the address which the array of structs will be returned"
+					},
+					"returns": {
+						"_0": "an struct array"
+					}
+				},
+				"setColor(uint256,uint8)": {
+					"details": "Update `color` in some index of the struct array",
+					"params": {
+						"index": "is the position where the struct will be updated",
+						"myColor": "is the new color to be stored"
+					}
+				},
+				"setInfo(uint256,string)": {
+					"details": "Update `newInfo` in some index of the struct array",
+					"params": {
+						"index": "is the position where the string will be updated",
+						"newInfo": "is the new string to be stored"
+					}
+				}
+			},
+			"title": "Concepts: All together 3",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"addInfo(uint8,string)": {
+					"notice": "Store `myColor` and `myInfo` at the end of the struct array"
+				},
+				"getMyInfoAtIndex(uint256)": {
+					"notice": "Return the struct in index"
+				},
+				"getOneInfo(address,uint256)": {
+					"notice": "Return the struct in index for an given address"
+				},
+				"listAllInfo(address)": {
+					"notice": "Return all the structs stored in the array per address account"
+				},
+				"setColor(uint256,uint8)": {
+					"notice": "Update the color at the index"
+				},
+				"setInfo(uint256,string)": {
+					"notice": "Update `newInfo` in some index of the struct array"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ETH_KIPU/Register15_All.sol": "Register15"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"ETH_KIPU/Register15_All.sol": {
+			"keccak256": "0xd8784530f92226ff93e234c05386f2fa344376b9f40576b2c6390fce7fed5f54",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://5e6e4f33e7618c4223668ad2ebe89ee491edf9f5e7f443165b82e50a457902ee",
+				"dweb:/ipfs/QmUzZLeBpUvaZNEnWpBtetd8ixcVuZuff8ZkE9Lz5Q2RHg"
+			]
+		}
+	},
+	"version": 1
+}

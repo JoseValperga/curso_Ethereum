@@ -46,6 +46,11 @@ contract Academy {
             academyInstructor = myInstructor;
         }
     }
+    
+    //changing academyState
+    function changeState(uint newState) public {
+        academyState = State(newState);
+    } 
 }
 
 // the struct can be used in any contract declared in this file

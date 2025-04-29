@@ -1,0 +1,69 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "schoolInstructor",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "age",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"curso_Udemy/structs_enum.sol": "School"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"curso_Udemy/structs_enum.sol": {
+			"keccak256": "0xf97310479b60a99262bf7a5aa46acb967a452329f5e5ebdd58fa1228ee4d170a",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://d5eb86cdf3ec5998d612f54bb46683f1150cb8d47b2d36a5bacf0bbe5a7faf36",
+				"dweb:/ipfs/QmQMQbRiS6pJw2TMHdW52Uhz1ASiJeJCN1r7mBsoFV2eDs"
+			]
+		}
+	},
+	"version": 1
+}
