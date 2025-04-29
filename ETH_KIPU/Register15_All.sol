@@ -15,6 +15,7 @@ contract Register15 {
         Colors color;
         uint countChanges;
     }
+    
     mapping (address => InfoStruct[]) public storedInfos;
 
     constructor() {
