@@ -10,7 +10,8 @@ contract GlobalVars {
     uint256 public block_number = block.number;
 
     // the block difficulty
-    uint256 public difficulty = block.difficulty;
+    //uint256 public difficulty = block.difficulty;->deprecado
+    uint256 public difficulty = block.prevrandao;
 
     // the block gas limit
     uint256 public gaslimit = block.gaslimit;
