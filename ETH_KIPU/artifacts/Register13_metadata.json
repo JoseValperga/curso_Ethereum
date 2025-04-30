@@ -1,0 +1,122 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "getInfo",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "info",
+								"type": "string"
+							},
+							{
+								"internalType": "enum Register13.Colors",
+								"name": "color",
+								"type": "uint8"
+							},
+							{
+								"internalType": "uint256",
+								"name": "countChanges",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Register13.InfoStruct",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "enum Register13.Colors",
+						"name": "myColor",
+						"type": "uint8"
+					},
+					{
+						"internalType": "string",
+						"name": "myInfo",
+						"type": "string"
+					}
+				],
+				"name": "setInfo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Solange Gueiros",
+			"kind": "dev",
+			"methods": {
+				"getInfo()": {
+					"details": "return the struct storedInfo",
+					"returns": {
+						"_0": "the stored struct storedInfo"
+					}
+				},
+				"setInfo(uint8,string)": {
+					"details": "update the strict `storedInfo` with the parameters `myColor` and `myInfo`increase the counter",
+					"params": {
+						"myColor": "the new color to store",
+						"myInfo": "the new string to store"
+					}
+				}
+			},
+			"title": "Concepts: struct",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"getInfo()": {
+					"notice": "Return the struct storedInfo"
+				},
+				"setInfo(uint8,string)": {
+					"notice": "Store `myColor` and `myInfo` Increase the counter which how many times storedInfo is updated"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ETH_KIPU/Register13-1.sol": "Register13"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"ETH_KIPU/Register13-1.sol": {
+			"keccak256": "0x6d69240482b1dd816960897651074140026f1ed1cb75eace4b7a58898f16da3d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7b18f8592298cb926a87c3dff9e3e13dbdf03433f045e9603b425861e0e272f8",
+				"dweb:/ipfs/QmUeQrZYJpHeWZcCkmynZiBh7siXQ6oJxp1566AqCMhePJ"
+			]
+		}
+	},
+	"version": 1
+}

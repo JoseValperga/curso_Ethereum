@@ -14,6 +14,7 @@ contract Register14 {
         Colors color;
         uint countChanges;
     }
+    
     mapping (address => InfoStruct) private storedInfos;
 
     event InfoChange(address person, uint countChanges, string oldInfo, string newInfo);
