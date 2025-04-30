@@ -1,0 +1,133 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "payable",
+				"type": "constructor"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"inputs": [],
+				"name": "balanceRecibido",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"constructor": {
+					"details": "Este constructor se ejecuta una vez al desplegar el contrato y puede recibir Ether."
+				},
+				"getBalance()": {
+					"returns": {
+						"_0": "El balance en wei del contrato."
+					}
+				},
+				"withdraw()": {
+					"details": "Solo el propietario del contrato puede realizar esta operación."
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"balanceRecibido()": {
+					"notice": "Almacena el balance de Ether recibido."
+				},
+				"constructor": {
+					"notice": "Constructor payable que establece el propietario del contrato."
+				},
+				"getBalance()": {
+					"notice": "Retorna el balance de Ether almacenado en el contrato."
+				},
+				"owner()": {
+					"notice": "Dirección del propietario que puede recibir Ether."
+				},
+				"withdraw()": {
+					"notice": "Función para retirar todo el Ether del contrato."
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ETH_KIPU/EmisorReceptos.sol": "ContratoReceptor"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"ETH_KIPU/EmisorReceptos.sol": {
+			"keccak256": "0x5696401aabe6782a0886c7fa2361cd9b1a71c2977525b03f4cf84f2c0f85225f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8dffabb2626d8d60e39346506861a15187fbd71d62aace2fcb221099724ecacd",
+				"dweb:/ipfs/QmTaXnmGARaomEpwittotNTW3RN9shLEq4SefZqrbPanoj"
+			]
+		}
+	},
+	"version": 1
+}
