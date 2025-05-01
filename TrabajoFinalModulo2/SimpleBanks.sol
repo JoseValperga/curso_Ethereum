@@ -144,9 +144,11 @@ contract SimpleBank {
         // TODO: Calcular la cantidad después del fee
         uint256 netAmount = _amount - feeAmount;
         // TODO: Restar el monto total (incluyendo el fee) del balance del usuario
-        users[msg.sender].balance =- 
+        users[msg.sender].balance -= _amount;
         // TODO: Agregar el fee al balance de la tesorería
+        tesoreriaBalance += feeAmount;
         // TODO: Transferir la cantidad después del fee al usuario llamador
+        
         // TODO: Emitir el evento Withdrawal con la dirección del usuario, la cantidad y el fee
     }
 
