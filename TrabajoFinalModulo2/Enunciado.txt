@@ -1,0 +1,54 @@
+Consigna para los Alumnos
+Descripción del Proyecto
+Tu tarea es crear un contrato inteligente llamado SimpleBank que permita a los usuarios registrarse, hacer depósitos, verificar su saldo y retirar fondos. Además, debe incluir un owner, una cuenta tesorería y una variable fee en puntos básicos. El contrato debe usar un constructor, modificador, eventos, mapeos y estructuras.
+
+Requisitos del Contrato
+Constructor: Debe haber un constructor que inicialice el fee, el owner y una cuenta tesoreria.
+Struct: Crear una estructura User que contenga la información del usuario (nombre, apellido, saldo, estado de registro).
+Mapping: Utilizar un mapping para asociar una dirección con la información del usuario.
+Modifiers: Crear modificadores para asegurar que solo los usuarios registrados y el owner puedan ejecutar ciertas funciones.
+Eventos: Emitir eventos cuando un usuario se registre, haga un depósito, realice un retiro y cuando el owner retire de la tesorería.
+Funcionalidades del Contrato
+Registro de Usuarios:
+
+Función register(string calldata _firstName, string calldata _lastName):
+Registra un nuevo usuario con nombre y apellido.
+Emite un evento UserRegistered.
+Depósito de Fondos:
+
+Función deposit():
+Permite a los usuarios registrados depositar fondos en su cuenta.
+Emite un evento Deposit.
+Verificación de Saldo:
+
+Función getBalance():
+Permite a los usuarios registrados verificar su saldo.
+Devuelve el saldo del usuario.
+Retiro de Fondos:
+
+Función withdraw(uint256 _amount):
+Permite a los usuarios registrados retirar fondos de su cuenta, deduciendo un fee.
+Emite un evento Withdrawal.
+Retiro de Tesorería:
+
+Función withdrawTreasury(uint256 _amount):
+Permite al owner retirar fondos de la cuenta de tesorería.
+Emite un evento TreasuryWithdrawal.
+Ejemplo de Cálculo de Fee en withdraw()
+Cuando un usuario registrado desea retirar fondos de su cuenta utilizando la función withdraw(uint256 _amount), se aplica un fee al monto solicitado. El fee se especifica en puntos básicos (1% = 100 puntos básicos).
+
+Ejemplo:
+Supongamos que:
+
+El fee está configurado en 200 puntos básicos (lo que equivale al 2%).
+Un usuario desea retirar 1000 unidades de su saldo.
+El cálculo del fee y el monto a retirar será el siguiente:
+
+Cálculo del fee:
+Fee = (1000 * 200) / 10000 = 20
+Monto después del fee:
+Monto neto a retirar = 1000 - 20 = 980
+Actualización del saldo del usuario:
+El saldo del usuario se reduce en 1000 unidades.
+Actualización del balance de la tesorería:
+La tesorería recibe 20 unidades.
