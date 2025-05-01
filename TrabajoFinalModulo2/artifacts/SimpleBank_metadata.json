@@ -14,7 +14,7 @@
 					},
 					{
 						"internalType": "address",
-						"name": "_treasury",
+						"name": "_tesoreria",
 						"type": "address"
 					}
 				],
@@ -43,31 +43,6 @@
 			{
 				"anonymous": false,
 				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "TreasuryWithdrawal",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "user",
-						"type": "address"
-					},
 					{
 						"indexed": false,
 						"internalType": "string",
@@ -106,7 +81,26 @@
 						"type": "uint256"
 					}
 				],
-				"name": "Withdrawal",
+				"name": "Withdraw",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "tesoreriaWithdraw",
 				"type": "event"
 			},
 			{
@@ -175,7 +169,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "treasury",
+				"name": "tesoreria",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -188,7 +182,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "treasuryBalance",
+				"name": "tesoreriaBalance",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -254,7 +248,7 @@
 						"type": "uint256"
 					}
 				],
-				"name": "withdrawTreasury",
+				"name": "withdrawtesoreria",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -268,33 +262,33 @@
 					"details": "Constructor del contrato",
 					"params": {
 						"_fee": "El fee en puntos básicos (1% = 100 puntos básicos)",
-						"_treasury": "La dirección de la tesorería"
+						"_tesoreria": "La dirección de la tesorería"
 					}
 				},
 				"deposit()": {
-					"details": "Deposita ETH en la cuenta del usuario"
+					"details": "Función para hacer un depósito de ETH en la cuenta del usuario"
 				},
 				"getBalance()": {
-					"details": "Verifica el saldo del usuario",
+					"details": "Función para verificar el saldo del usuario",
 					"returns": {
 						"_0": "El saldo del usuario en wei"
 					}
 				},
 				"register(string,string)": {
-					"details": "Registra un nuevo usuario",
+					"details": "Función para registrar un nuevo usuario",
 					"params": {
 						"_firstName": "El primer nombre del usuario",
 						"_lastName": "El apellido del usuario"
 					}
 				},
 				"withdraw(uint256)": {
-					"details": "Retira ETH de la cuenta del usuario, aplicando un fee",
+					"details": "Función para retirar ETH de la cuenta del usuario",
 					"params": {
 						"_amount": "La cantidad a retirar (en wei)"
 					}
 				},
-				"withdrawTreasury(uint256)": {
-					"details": "Retira fondos de la cuenta de tesorería por el owner",
+				"withdrawtesoreria(uint256)": {
+					"details": "Función para que el propietario retire fondos de la cuenta de tesorería",
 					"params": {
 						"_amount": "La cantidad a retirar de la tesorería (en wei)"
 					}
@@ -311,7 +305,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"TrabajoFinalModulo2/SimpleBank.sol": "SimpleBank"
+			"TrabajoFinalModulo2/SimpleBanks.sol": "SimpleBank"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -325,12 +319,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"TrabajoFinalModulo2/SimpleBank.sol": {
-			"keccak256": "0x99129efaae8294874275acd4eed72be0c5c13dcc685a2762e31fb1f5d49efd55",
+		"TrabajoFinalModulo2/SimpleBanks.sol": {
+			"keccak256": "0xeaf6152cc2cc9b1098e60ef3f3ffe71e43742d0891c52f24073ff2e4a24cc9cd",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7c6ff40810c45b99865a010dbbf42659fa4c9669442adb97fc29e039769ae2f8",
-				"dweb:/ipfs/QmbprpCbo4YPE2MeJ3kYuqoYpvi1VZ4fwMmqbWq1WtYdL2"
+				"bzz-raw://d69f8eaafc25bd129b08d23c991c73788e2dc144f324ce0c60510279d9ea03e1",
+				"dweb:/ipfs/QmXrJDg8sM7pJ3oAtvZvJ533EyjEReFgF8j3TizWn8NUcB"
 			]
 		}
 	},

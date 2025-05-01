@@ -83,15 +83,28 @@ contract SimpleBank {
      * @param _firstName El primer nombre del usuario
      * @param _lastName El apellido del usuario
      */
-    function register(string calldata _firstName, string calldata _lastName) external {
+    function register(string calldata _firstName, string calldata _lastName)
+        external
+    {
         // TODO: Validar que el primer nombre no esté vacío
-        require(bytes(_firstName).length > 0, "El primer nombre no puede estar vacio");
+        require(
+            bytes(_firstName).length > 0,
+            "El primer nombre no puede estar vacio"
+        );
         // TODO: Validar que el apellido no esté vacío
-        require(bytes(_lastName).length > 0, "El apellido no puede estar vacio");
+        require(
+            bytes(_lastName).length > 0,
+            "El apellido no puede estar vacio"
+        );
         // TODO: Verificar que el usuario no esté registrado previamente
         require(!users[msg.sender].isRegistered, "Usuario ya registrado");
         // TODO: Crear un nuevo usuario con balance cero y registrado como verdadero
-        users[msg.sender] = User({firstName: _firstName, lastName: _lastName, balance: 0, isRegistered: true}); 
+        users[msg.sender] = User({
+            firstName: _firstName,
+            lastName: _lastName,
+            balance: 0,
+            isRegistered: true
+        });
         // TODO: Emitir el evento UserRegistered con la dirección del usuario y sus datos
         emit UserRegistered(_firstName, _lastName);
     }
@@ -101,8 +114,11 @@ contract SimpleBank {
      */
     function deposit() external payable onlyRegistered {
         // TODO: Validar que la cantidad de Ether depositada sea mayor a cero
+        require(msg.value > 0, "No se ha ingresado ninguna cantidad");
         // TODO: Agregar la cantidad depositada al balance del usuario
+        users[msg.sender].balance += msg.value;
         // TODO: Emitir el evento Deposit con la dirección del usuario y la cantidad depositada
+        emit Deposit(msg.sender, msg.value);
     }
 
     /**
@@ -111,6 +127,7 @@ contract SimpleBank {
      */
     function getBalance() external view onlyRegistered returns (uint256) {
         // TODO: Retornar el balance del usuario llamador
+        return users[msg.sender].balance;
     }
 
     /**
@@ -119,10 +136,15 @@ contract SimpleBank {
      */
     function withdraw(uint256 _amount) external onlyRegistered {
         // TODO: Validar que la cantidad a retirar sea mayor a cero
+        require(_amount > 0, "No se ha ingresado ninguna cantidad");
         // TODO: Verificar que el usuario tenga suficiente balance para cubrir el retiro
+        require(users[msg.sender].balance >= _amount, "Saldo insuficiente");
         // TODO: Calcular el fee en función del porcentaje definido
+        uint256 feeAmount = _amount * fee / 100;
         // TODO: Calcular la cantidad después del fee
+        uint256 netAmount = _amount - feeAmount;
         // TODO: Restar el monto total (incluyendo el fee) del balance del usuario
+        users[msg.sender].balance =- 
         // TODO: Agregar el fee al balance de la tesorería
         // TODO: Transferir la cantidad después del fee al usuario llamador
         // TODO: Emitir el evento Withdrawal con la dirección del usuario, la cantidad y el fee
