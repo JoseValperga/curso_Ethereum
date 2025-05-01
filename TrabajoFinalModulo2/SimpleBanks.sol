@@ -8,8 +8,8 @@ pragma solidity 0.8.26;
 contract SimpleBank {
     // TODO: Define la estructura User con los campos firstName, lastName, balance e isRegistered
     struct User {
-        string _firstName;
-        string _lastName;
+        string firstName;
+        string lastName;
         uint256 balance;
         bool isRegistered;
     }
@@ -18,19 +18,19 @@ contract SimpleBank {
     mapping(address => User) public users;
 
     // TODO: Declara la variable para almacenar la dirección del propietario del contrato
-    address _owner;
+    address public owner;
 
     // TODO: Declara la variable para almacenar la dirección de la tesorería
-    address _treasury;
+    address public tesoreria;
 
     // TODO: Define la variable para el fee en puntos básicos (1% = 100 puntos básicos)
-    uint256 _fee;
+    uint256 public fee;
 
     // TODO: Declara la variable para almacenar el balance acumulado en la tesorería
-    uint256 _treasuryBalance;
+    uint256 public tesoreriaBalance;
 
     // TODO: Define el evento UserRegistered que registre la dirección, el primer nombre y el apellido del usuario
-    event UserRegistered(string _firstName, string _lastName);
+    event UserRegistered(string firstName, string lastName);
 
     // TODO: Define el evento Deposit para registrar los depósitos de los usuarios con dirección y cantidad
     event Deposit(address indexed user, uint256 amount);
@@ -38,8 +38,8 @@ contract SimpleBank {
     // TODO: Define el evento Withdrawal que registre el retiro de los usuarios, la cantidad y el fee
     event Withdraw(address indexed user, uint256 amount, uint256 feeAmount);
 
-    // TODO: Define el evento TreasuryWithdraw para registrar los retiros de fondos de la tesorería por el propietario
-    event TreasuryWithdraw(address indexed owner, uint256 amount);
+    // TODO: Define el evento tesoreriaWithdraw para registrar los retiros de fondos de la tesorería por el propietario
+    event tesoreriaWithdraw(address indexed owner, uint256 amount);
 
     // TODO: Crea un modificador onlyRegistered para asegurar que el usuario esté registrado
     modifier onlyRegistered() {
@@ -48,19 +48,34 @@ contract SimpleBank {
     }
 
     // TODO: Crea un modificador onlyOwner para asegurar que solo el propietario pueda ejecutar ciertas funciones
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Only owner can call this function");
+        _;
+    }
 
     /**
      * @dev Constructor del contrato
      * @param _fee El fee en puntos básicos (1% = 100 puntos básicos)
-     * @param _treasury La dirección de la tesorería
+     * @param _tesoreria La dirección de la tesorería
      */
-    constructor(uint256 _fee, address _treasury) {
+    constructor(uint256 _fee, address _tesoreria) {
         // TODO: Verificar que la dirección de tesorería no sea la dirección cero
+        require(_tesoreria != address(0), "Tesoreria no valida");
+
         // TODO: Validar que el fee no sea mayor al 100% (10000 puntos básicos)
+        require(_fee <= 10000, "Fee debe ser menos o igual a 10000 puntos");
+
         // TODO: Asignar la dirección del desplegador como propietario del contrato
+        owner = msg.sender;
+
         // TODO: Inicializar el fee con el valor proporcionado
-        // TODO: Inicializar la tesorería con la dirección proporcionada
+        fee = _fee;
+
+        // TODO: Asignar la tesorería a la variable de salida con el valor proporcionado
+        tesoreria = _tesoreria;
+
         // TODO: Inicializar el balance de la tesorería a cero
+        tesoreriaBalance = 0;
     }
 
     /**
@@ -68,14 +83,17 @@ contract SimpleBank {
      * @param _firstName El primer nombre del usuario
      * @param _lastName El apellido del usuario
      */
-    function register(string calldata _firstName, string calldata _lastName)
-        external
-    {
+    function register(string calldata _firstName, string calldata _lastName) external {
         // TODO: Validar que el primer nombre no esté vacío
+        require(bytes(_firstName).length > 0, "El primer nombre no puede estar vacio");
         // TODO: Validar que el apellido no esté vacío
+        require(bytes(_lastName).length > 0, "El apellido no puede estar vacio");
         // TODO: Verificar que el usuario no esté registrado previamente
+        require(!users[msg.sender].isRegistered, "Usuario ya registrado");
         // TODO: Crear un nuevo usuario con balance cero y registrado como verdadero
+        users[msg.sender] = User({firstName: _firstName, lastName: _lastName, balance: 0, isRegistered: true}); 
         // TODO: Emitir el evento UserRegistered con la dirección del usuario y sus datos
+        emit UserRegistered(_firstName, _lastName);
     }
 
     /**
@@ -114,10 +132,10 @@ contract SimpleBank {
      * @dev Función para que el propietario retire fondos de la cuenta de tesorería
      * @param _amount La cantidad a retirar de la tesorería (en wei)
      */
-    function withdrawTreasury(uint256 _amount) external onlyOwner {
+    function withdrawtesoreria(uint256 _amount) external onlyOwner {
         // TODO: Verificar que haya suficiente balance en la tesorería para cubrir el retiro
         // TODO: Reducir el balance de la tesorería en la cantidad retirada
         // TODO: Transferir los fondos a la tesorería del propietario
-        // TODO: Emitir el evento TreasuryWithdrawal con la dirección del propietario y la cantidad retirada
+        // TODO: Emitir el evento tesoreriaWithdrawal con la dirección del propietario y la cantidad retirada
     }
 }
