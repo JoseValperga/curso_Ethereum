@@ -137,19 +137,27 @@ contract SimpleBank {
     function withdraw(uint256 _amount) external onlyRegistered {
         // TODO: Validar que la cantidad a retirar sea mayor a cero
         require(_amount > 0, "No se ha ingresado ninguna cantidad");
+
         // TODO: Verificar que el usuario tenga suficiente balance para cubrir el retiro
         require(users[msg.sender].balance >= _amount, "Saldo insuficiente");
+
         // TODO: Calcular el fee en función del porcentaje definido
-        uint256 feeAmount = _amount * fee / 100;
+        uint256 feeAmount = (_amount * fee) / 100;
+
         // TODO: Calcular la cantidad después del fee
         uint256 netAmount = _amount - feeAmount;
+
         // TODO: Restar el monto total (incluyendo el fee) del balance del usuario
         users[msg.sender].balance -= _amount;
+
         // TODO: Agregar el fee al balance de la tesorería
         tesoreriaBalance += feeAmount;
+
         // TODO: Transferir la cantidad después del fee al usuario llamador
-        
+        payable(tesoreria).transfer(netAmount);
+
         // TODO: Emitir el evento Withdrawal con la dirección del usuario, la cantidad y el fee
+        emit Withdraw(msg.sender, _amount, feeAmount);
     }
 
     /**
@@ -158,8 +166,15 @@ contract SimpleBank {
      */
     function withdrawtesoreria(uint256 _amount) external onlyOwner {
         // TODO: Verificar que haya suficiente balance en la tesorería para cubrir el retiro
+        require(tesoreriaBalance >= _amount, "Saldo insuficiente en Tesoreria");
+
         // TODO: Reducir el balance de la tesorería en la cantidad retirada
+        tesoreriaBalance -= _amount;
+
         // TODO: Transferir los fondos a la tesorería del propietario
+        payable(tesoreria).transfer(_amount);
+        
         // TODO: Emitir el evento tesoreriaWithdrawal con la dirección del propietario y la cantidad retirada
+        emit tesoreriaWithdraw(msg.sender, _amount);
     }
 }
