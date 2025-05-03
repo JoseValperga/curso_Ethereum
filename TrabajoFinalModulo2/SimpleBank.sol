@@ -36,7 +36,7 @@ contract SimpleBank {
     event Deposit(address indexed user, uint256 amount);
 
     // TODO: Define el evento Withdrawal que registre el retiro de los usuarios, la cantidad y el fee
-    event Withdraw(address indexed user, uint256 amount, uint256 feeAmount);
+    event Withdrawal(address indexed user, uint256 amount, uint256 feeAmount);
 
     // TODO: Define el evento tesoreriaWithdraw para registrar los retiros de fondos de la tesorería por el propietario
     event tesoreriaWithdraw(address indexed owner, uint256 amount);
@@ -157,7 +157,7 @@ contract SimpleBank {
         payable(tesoreria).transfer(netAmount);
 
         // TODO: Emitir el evento Withdrawal con la dirección del usuario, la cantidad y el fee
-        emit Withdraw(msg.sender, _amount, feeAmount);
+        emit Withdrawal(msg.sender, _amount, feeAmount);
     }
 
     /**
@@ -174,7 +174,7 @@ contract SimpleBank {
         // TODO: Transferir los fondos a la tesorería del propietario
         payable(tesoreria).transfer(_amount);
         
-        // TODO: Emitir el evento tesoreriaWithdrawal con la dirección del propietario y la cantidad retirada
+        // TODO: Emitir el evento tesoreriaWithdraw con la dirección del propietario y la cantidad retirada
         emit tesoreriaWithdraw(msg.sender, _amount);
     }
 }
