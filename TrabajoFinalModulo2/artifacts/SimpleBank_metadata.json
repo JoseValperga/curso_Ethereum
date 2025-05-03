@@ -305,7 +305,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"TrabajoFinalModulo2/SimpleBanks.sol": "SimpleBank"
+			"TrabajoFinalModulo2/SimpleBank.sol": "SimpleBank"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -319,12 +319,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"TrabajoFinalModulo2/SimpleBanks.sol": {
-			"keccak256": "0xeaf6152cc2cc9b1098e60ef3f3ffe71e43742d0891c52f24073ff2e4a24cc9cd",
+		"TrabajoFinalModulo2/SimpleBank.sol": {
+			"keccak256": "0xd956725937d986b5b40a0ad0122df60578acfc770e7cf26b4ebdda99a5f1cf6a",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d69f8eaafc25bd129b08d23c991c73788e2dc144f324ce0c60510279d9ea03e1",
-				"dweb:/ipfs/QmXrJDg8sM7pJ3oAtvZvJ533EyjEReFgF8j3TizWn8NUcB"
+				"bzz-raw://595260d4fbfab4b59f1246eb5ab8eae5d39916c471fcaa231fd916c648b95022",
+				"dweb:/ipfs/QmZ3TmSMLgN4Zt48yCMuZkYRTejcCof5RGhh5CAuRh5KDA"
 			]
 		}
 	},
