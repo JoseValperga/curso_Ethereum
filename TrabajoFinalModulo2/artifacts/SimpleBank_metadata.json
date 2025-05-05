@@ -237,7 +237,7 @@
 				],
 				"name": "withdraw",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -250,7 +250,7 @@
 				],
 				"name": "withdrawtesoreria",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			}
 		],
@@ -320,11 +320,11 @@
 	},
 	"sources": {
 		"TrabajoFinalModulo2/SimpleBank.sol": {
-			"keccak256": "0xa81c80a24385edd9caee55f629d8f2ef943cfe3e669e0dd13100b145c113b7f1",
+			"keccak256": "0xeb6ea538498dddac49c1166c64e4e00b11b38cafedd2320e66c96e0838823f90",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://85ea84e3131edcb1cb049750801d66ffc824382a937df6c1b32057db61844b65",
-				"dweb:/ipfs/QmSiBzE4bsJHVZbXkAGxVrQA61bgVjGP5LDMzzsoCx9gTM"
+				"bzz-raw://4caf389d450519d96ec31d87c7a841719a4d229771d33a4778bbcc6615d325e9",
+				"dweb:/ipfs/QmbhagwVo62o74wSynfYDQCKtkiQUs1HV1L85rNB8b7g7E"
 			]
 		}
 	},

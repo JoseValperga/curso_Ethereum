@@ -134,7 +134,7 @@ contract SimpleBank {
      * @dev Función para retirar ETH de la cuenta del usuario
      * @param _amount La cantidad a retirar (en wei)
      */
-    function withdraw(uint256 _amount) external onlyRegistered {
+    function withdraw(uint256 _amount) external payable onlyRegistered {
         // TODO: Validar que la cantidad a retirar sea mayor a cero
         require(_amount > 0, "No se ha ingresado ninguna cantidad");
 
@@ -164,7 +164,7 @@ contract SimpleBank {
      * @dev Función para que el propietario retire fondos de la cuenta de tesorería
      * @param _amount La cantidad a retirar de la tesorería (en wei)
      */
-    function withdrawtesoreria(uint256 _amount) external onlyOwner {
+    function withdrawtesoreria(uint256 _amount) external payable onlyOwner {
         // TODO: Verificar que haya suficiente balance en la tesorería para cubrir el retiro
         require(tesoreriaBalance >= _amount, "Saldo insuficiente en Tesoreria");
 
