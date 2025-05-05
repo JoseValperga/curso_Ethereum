@@ -21,13 +21,13 @@ contract SimpleBank {
     address public owner;
 
     // TODO: Declara la variable para almacenar la dirección de la tesorería
-    address public tesoreria;
+    address public treasury;
 
     // TODO: Define la variable para el fee en puntos básicos (1% = 100 puntos básicos)
     uint256 public fee;
 
     // TODO: Declara la variable para almacenar el balance acumulado en la tesorería
-    uint256 public tesoreriaBalance;
+    uint256 public treasuryBalance;
 
     // TODO: Define el evento UserRegistered que registre la dirección, el primer nombre y el apellido del usuario
     event UserRegistered(address indexed user, string firstName, string lastName);
@@ -38,8 +38,8 @@ contract SimpleBank {
     // TODO: Define el evento Withdrawal que registre el retiro de los usuarios, la cantidad y el fee
     event Withdrawal(address indexed user, uint256 amount, uint256 feeAmount);
 
-    // TODO: Define el evento tesoreriaWithdraw para registrar los retiros de fondos de la tesorería por el propietario
-    event tesoreriaWithdraw(address indexed owner, uint256 amount);
+    // TODO: Define el evento TreasuryWithdrawal para registrar los retiros de fondos de la tesorería por el propietario
+    event TreasuryWithdrawal(address indexed owner, uint256 amount);
 
     // TODO: Crea un modificador onlyRegistered para asegurar que el usuario esté registrado
     modifier onlyRegistered() {
@@ -56,14 +56,14 @@ contract SimpleBank {
     /**
      * @dev Constructor del contrato
      * @param _fee El fee en puntos básicos (1% = 100 puntos básicos)
-     * @param _tesoreria La dirección de la tesorería
+     * @param _treasury La dirección de la tesorería
      */
-    constructor(uint256 _fee, address _tesoreria) {
+    constructor(uint256 _fee, address _treasury) {
         // TODO: Verificar que la dirección de tesorería no sea la dirección cero
-        require(_tesoreria != address(0), "Tesoreria no valida");
+        require(_treasury != address(0), "treasury no valida");
 
         // TODO: Validar que el fee no sea mayor al 100% (10000 puntos básicos)
-        require(_fee <= 10000, "Fee debe ser menos o igual a 10000 puntos");
+        require(_fee <= 10000, "Fee debe ser <= 10000 puntos");
 
         // TODO: Asignar la dirección del desplegador como propietario del contrato
         owner = msg.sender;
@@ -72,10 +72,10 @@ contract SimpleBank {
         fee = _fee;
 
         // TODO: Asignar la tesorería a la variable de salida con el valor proporcionado
-        tesoreria = _tesoreria;
+        treasury = _treasury;
 
         // TODO: Inicializar el balance de la tesorería a cero
-        tesoreriaBalance = 0;
+        treasuryBalance = 0;
     }
 
     /**
@@ -83,21 +83,16 @@ contract SimpleBank {
      * @param _firstName El primer nombre del usuario
      * @param _lastName El apellido del usuario
      */
-    function register(string calldata _firstName, string calldata _lastName)
-        external
-    {
+    function register(string calldata _firstName, string calldata _lastName) external {
         // TODO: Validar que el primer nombre no esté vacío
-        require(
-            bytes(_firstName).length > 0,
-            "El primer nombre no puede estar vacio"
-        );
+        require(bytes(_firstName).length > 0, "El primer nombre no puede estar vacio");
+
         // TODO: Validar que el apellido no esté vacío
-        require(
-            bytes(_lastName).length > 0,
-            "El apellido no puede estar vacio"
-        );
+        require(bytes(_lastName).length > 0, "El apellido no puede estar vacio");
+
         // TODO: Verificar que el usuario no esté registrado previamente
         require(!users[msg.sender].isRegistered, "Usuario ya registrado");
+
         // TODO: Crear un nuevo usuario con balance cero y registrado como verdadero
         users[msg.sender] = User({
             firstName: _firstName,
@@ -105,6 +100,7 @@ contract SimpleBank {
             balance: 0,
             isRegistered: true
         });
+
         // TODO: Emitir el evento UserRegistered con la dirección del usuario y sus datos
         emit UserRegistered(msg.sender, _firstName, _lastName);
     }
@@ -115,8 +111,10 @@ contract SimpleBank {
     function deposit() external payable onlyRegistered {
         // TODO: Validar que la cantidad de Ether depositada sea mayor a cero
         require(msg.value > 0, "No se ha ingresado ninguna cantidad");
+
         // TODO: Agregar la cantidad depositada al balance del usuario
         users[msg.sender].balance += msg.value;
+
         // TODO: Emitir el evento Deposit con la dirección del usuario y la cantidad depositada
         emit Deposit(msg.sender, msg.value);
     }
@@ -134,7 +132,7 @@ contract SimpleBank {
      * @dev Función para retirar ETH de la cuenta del usuario
      * @param _amount La cantidad a retirar (en wei)
      */
-    function withdraw(uint256 _amount) external payable onlyRegistered {
+    function withdraw(uint256 _amount) external onlyRegistered {
         // TODO: Validar que la cantidad a retirar sea mayor a cero
         require(_amount > 0, "No se ha ingresado ninguna cantidad");
 
@@ -151,10 +149,10 @@ contract SimpleBank {
         users[msg.sender].balance -= _amount;
 
         // TODO: Agregar el fee al balance de la tesorería
-        tesoreriaBalance += feeAmount;
+        treasuryBalance += feeAmount;
 
         // TODO: Transferir la cantidad después del fee al usuario llamador
-        payable(tesoreria).transfer(netAmount);
+        payable(msg.sender).transfer(netAmount);
 
         // TODO: Emitir el evento Withdrawal con la dirección del usuario, la cantidad y el fee
         emit Withdrawal(msg.sender, _amount, feeAmount);
@@ -164,17 +162,17 @@ contract SimpleBank {
      * @dev Función para que el propietario retire fondos de la cuenta de tesorería
      * @param _amount La cantidad a retirar de la tesorería (en wei)
      */
-    function withdrawtesoreria(uint256 _amount) external payable onlyOwner {
+    function withdrawTreasury(uint256 _amount) external onlyOwner {
         // TODO: Verificar que haya suficiente balance en la tesorería para cubrir el retiro
-        require(tesoreriaBalance >= _amount, "Saldo insuficiente en Tesoreria");
+        require(treasuryBalance >= _amount, "Saldo insuficiente en treasury");
 
         // TODO: Reducir el balance de la tesorería en la cantidad retirada
-        tesoreriaBalance -= _amount;
+        treasuryBalance -= _amount;
 
         // TODO: Transferir los fondos a la tesorería del propietario
-        payable(tesoreria).transfer(_amount);
-        
-        // TODO: Emitir el evento tesoreriaWithdraw con la dirección del propietario y la cantidad retirada
-        emit tesoreriaWithdraw(msg.sender, _amount);
+        payable(owner).transfer(_amount);
+
+        // TODO: Emitir el evento treasuryWithdraw con la dirección del propietario y la cantidad retirada
+        emit TreasuryWithdrawal(msg.sender, _amount);
     }
 }
