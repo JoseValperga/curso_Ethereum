@@ -46,6 +46,31 @@
 					{
 						"indexed": true,
 						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
 						"name": "owner",
 						"type": "address"
 					},
@@ -169,6 +194,24 @@
 					}
 				],
 				"name": "register",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "transferBetweenUsers",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -300,7 +343,7 @@
 					}
 				}
 			},
-			"title": "SimpleBank",
+			"title": "SimpleBankExtended - Jose Valperga",
 			"version": 1
 		},
 		"userdoc": {
@@ -311,7 +354,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"TrabajoFinalModulo2/SimpleBank.sol": "SimpleBank"
+			"TrabajoFinalModulo2/SimpleBankExtended.sol": "SimpleBank"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -325,12 +368,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"TrabajoFinalModulo2/SimpleBank.sol": {
-			"keccak256": "0x6c7681929d6cebf408985855a3120cb7d9d32fb091d26bbcc7eb5bc225a38de3",
+		"TrabajoFinalModulo2/SimpleBankExtended.sol": {
+			"keccak256": "0xc7a60983bcd0fcfdb81fe41ac56c3e4d88c12874650e24e2a4d8176bdc4d2164",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://25339b12934e774bdb1ac6eb4510cf3aa4f5a2ec799c347d2d0b2de41b4d7a71",
-				"dweb:/ipfs/QmW2nrbpNE9otFELJ1fMgUvirdbsZ86jDa9pUCmASSjiJT"
+				"bzz-raw://ed7b10cd5bf40cf95a9c7db20b9dffdcdcaffa54165f82a5b783fc7ad9212480",
+				"dweb:/ipfs/QmXcsgAeosKWoi1NGeZkfipejREbDHj9tyo7QSbSywS2DU"
 			]
 		}
 	},
