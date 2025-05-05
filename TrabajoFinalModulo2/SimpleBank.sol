@@ -30,7 +30,7 @@ contract SimpleBank {
     uint256 public tesoreriaBalance;
 
     // TODO: Define el evento UserRegistered que registre la dirección, el primer nombre y el apellido del usuario
-    event UserRegistered(string firstName, string lastName);
+    event UserRegistered(address indexed user, string firstName, string lastName);
 
     // TODO: Define el evento Deposit para registrar los depósitos de los usuarios con dirección y cantidad
     event Deposit(address indexed user, uint256 amount);
@@ -106,7 +106,7 @@ contract SimpleBank {
             isRegistered: true
         });
         // TODO: Emitir el evento UserRegistered con la dirección del usuario y sus datos
-        emit UserRegistered(_firstName, _lastName);
+        emit UserRegistered(msg.sender, _firstName, _lastName);
     }
 
     /**
@@ -142,7 +142,7 @@ contract SimpleBank {
         require(users[msg.sender].balance >= _amount, "Saldo insuficiente");
 
         // TODO: Calcular el fee en función del porcentaje definido
-        uint256 feeAmount = (_amount * fee) / 100;
+        uint256 feeAmount = (_amount * fee) / 10000;
 
         // TODO: Calcular la cantidad después del fee
         uint256 netAmount = _amount - feeAmount;
