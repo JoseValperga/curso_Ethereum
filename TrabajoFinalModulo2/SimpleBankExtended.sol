@@ -150,8 +150,8 @@ contract SimpleBank {
     }
 
      /**
-     * @dev Función para registrar un nuevo usuario
-     * @param _receiver Dirección del usuario destinoEl primer nombre del usuario
+     * @dev Función para transferencias de ETH entre usuarios
+     * @param _receiver Dirección del usuario destino
      * @param _amount Monto a transferir (en wei)
      */
     function transferBetweenUsers(address _receiver, uint256 _amount)

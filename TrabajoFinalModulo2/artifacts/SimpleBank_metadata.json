@@ -330,6 +330,13 @@
 						"_lastName": "El apellido del usuario"
 					}
 				},
+				"transferBetweenUsers(address,uint256)": {
+					"details": "Función para transferencias de ETH entre usuarios",
+					"params": {
+						"_amount": "Monto a transferir (en wei)",
+						"_receiver": "Dirección del usuario destino"
+					}
+				},
 				"withdraw(uint256)": {
 					"details": "Función para retirar ETH de la cuenta del usuario",
 					"params": {
@@ -369,11 +376,11 @@
 	},
 	"sources": {
 		"TrabajoFinalModulo2/SimpleBankExtended.sol": {
-			"keccak256": "0xc7a60983bcd0fcfdb81fe41ac56c3e4d88c12874650e24e2a4d8176bdc4d2164",
+			"keccak256": "0x09a5016de56617724376b8f29f1d2c98a62c47ff6a9ff32126d1708d3c7dd2cf",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ed7b10cd5bf40cf95a9c7db20b9dffdcdcaffa54165f82a5b783fc7ad9212480",
-				"dweb:/ipfs/QmXcsgAeosKWoi1NGeZkfipejREbDHj9tyo7QSbSywS2DU"
+				"bzz-raw://c7df4742855e56d819ed18fff12bdcf50379b34957263b93372cf40845963b3f",
+				"dweb:/ipfs/QmQZzkDbVmJoc8x2KzraedeXxEP5NpQB4QSMeZpJECRdmx"
 			]
 		}
 	},
