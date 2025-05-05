@@ -14,7 +14,7 @@
 					},
 					{
 						"internalType": "address",
-						"name": "_tesoreria",
+						"name": "_treasury",
 						"type": "address"
 					}
 				],
@@ -175,7 +175,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "tesoreria",
+				"name": "treasury",
 				"outputs": [
 					{
 						"internalType": "address",
@@ -188,7 +188,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "tesoreriaBalance",
+				"name": "treasuryBalance",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -268,33 +268,33 @@
 					"details": "Constructor del contrato",
 					"params": {
 						"_fee": "El fee en puntos básicos (1% = 100 puntos básicos)",
-						"_tesoreria": "La dirección de la tesorería"
+						"_treasury": "La dirección de la tesorería"
 					}
 				},
 				"deposit()": {
-					"details": "Deposita ETH en la cuenta del usuario"
+					"details": "Función para hacer un depósito de ETH en la cuenta del usuario"
 				},
 				"getBalance()": {
-					"details": "Verifica el saldo del usuario",
+					"details": "Función para verificar el saldo del usuario",
 					"returns": {
 						"_0": "El saldo del usuario en wei"
 					}
 				},
 				"register(string,string)": {
-					"details": "Registra un nuevo usuario",
+					"details": "Función para registrar un nuevo usuario",
 					"params": {
 						"_firstName": "El primer nombre del usuario",
 						"_lastName": "El apellido del usuario"
 					}
 				},
 				"withdraw(uint256)": {
-					"details": "Retira ETH de la cuenta del usuario, aplicando un fee",
+					"details": "Función para retirar ETH de la cuenta del usuario",
 					"params": {
 						"_amount": "La cantidad a retirar (en wei)"
 					}
 				},
 				"withdrawTreasury(uint256)": {
-					"details": "Retira fondos de la cuenta de tesorería por el owner",
+					"details": "Función para que el propietario retire fondos de la cuenta de tesorería",
 					"params": {
 						"_amount": "La cantidad a retirar de la tesorería (en wei)"
 					}
@@ -311,7 +311,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"TrabajoFinalModulo2/SimpleBankTercero.sol": "SimpleBank"
+			"TrabajoFinalModulo2/SimpleBank.sol": "SimpleBank"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -325,12 +325,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"TrabajoFinalModulo2/SimpleBankTercero.sol": {
-			"keccak256": "0x1ee0a265407d6ad7db3b8f43d1aefc4c99b7bb5a5ec558c83b12bc0c94dac644",
+		"TrabajoFinalModulo2/SimpleBank.sol": {
+			"keccak256": "0x6c7681929d6cebf408985855a3120cb7d9d32fb091d26bbcc7eb5bc225a38de3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f2bb61724b585e47888c95db8769e3bda30ef1785f0ae29e635581696aed3c7b",
-				"dweb:/ipfs/QmVbXPpcmEw88r1pbzAoa9jNHZFpHv8gKCZWR4e5awnYEQ"
+				"bzz-raw://25339b12934e774bdb1ac6eb4510cf3aa4f5a2ec799c347d2d0b2de41b4d7a71",
+				"dweb:/ipfs/QmW2nrbpNE9otFELJ1fMgUvirdbsZ86jDa9pUCmASSjiJT"
 			]
 		}
 	},

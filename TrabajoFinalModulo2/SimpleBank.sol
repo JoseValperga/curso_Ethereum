@@ -2,7 +2,7 @@
 pragma solidity 0.8.26;
 
 /**
- * @title SimpleBank
+ * @title SimpleBank - Jose Valperga
  * @dev Smart contract para gestionar un banco sencillo donde los usuarios pueden registrarse, depositar y retirar ETH.
  */
 contract SimpleBank {
@@ -43,13 +43,13 @@ contract SimpleBank {
 
     // TODO: Crea un modificador onlyRegistered para asegurar que el usuario esté registrado
     modifier onlyRegistered() {
-        require(users[msg.sender].isRegistered, "User is not registered");
+        require(users[msg.sender].isRegistered, "El usuario no esta registrado");
         _;
     }
 
     // TODO: Crea un modificador onlyOwner para asegurar que solo el propietario pueda ejecutar ciertas funciones
     modifier onlyOwner() {
-        require(msg.sender == owner, "Only owner can call this function");
+        require(msg.sender == owner, "Solo el usuario puede llamar a esta funcion");
         _;
     }
 
@@ -60,7 +60,7 @@ contract SimpleBank {
      */
     constructor(uint256 _fee, address _treasury) {
         // TODO: Verificar que la dirección de tesorería no sea la dirección cero
-        require(_treasury != address(0), "treasury no valida");
+        require(_treasury != address(0), "Direccion de tesoreria no valida");
 
         // TODO: Validar que el fee no sea mayor al 100% (10000 puntos básicos)
         require(_fee <= 10000, "Fee debe ser <= 10000 puntos");
@@ -85,13 +85,13 @@ contract SimpleBank {
      */
     function register(string calldata _firstName, string calldata _lastName) external {
         // TODO: Validar que el primer nombre no esté vacío
-        require(bytes(_firstName).length > 0, "El primer nombre no puede estar vacio");
+        require(bytes(_firstName).length > 0, "Es obligatorio ingresar el primer nombre");
 
         // TODO: Validar que el apellido no esté vacío
-        require(bytes(_lastName).length > 0, "El apellido no puede estar vacio");
+        require(bytes(_lastName).length > 0, "Es obligatorio ingresar el apellido");
 
         // TODO: Verificar que el usuario no esté registrado previamente
-        require(!users[msg.sender].isRegistered, "Usuario ya registrado");
+        require(!users[msg.sender].isRegistered, "El usuario ya esta registrado");
 
         // TODO: Crear un nuevo usuario con balance cero y registrado como verdadero
         users[msg.sender] = User({
@@ -110,7 +110,7 @@ contract SimpleBank {
      */
     function deposit() external payable onlyRegistered {
         // TODO: Validar que la cantidad de Ether depositada sea mayor a cero
-        require(msg.value > 0, "No se ha ingresado ninguna cantidad");
+        require(msg.value > 0, "Debe ingresar una cantidad");
 
         // TODO: Agregar la cantidad depositada al balance del usuario
         users[msg.sender].balance += msg.value;
@@ -134,10 +134,10 @@ contract SimpleBank {
      */
     function withdraw(uint256 _amount) external onlyRegistered {
         // TODO: Validar que la cantidad a retirar sea mayor a cero
-        require(_amount > 0, "No se ha ingresado ninguna cantidad");
+        require(_amount > 0, "Debe ingresar una cantidad");
 
         // TODO: Verificar que el usuario tenga suficiente balance para cubrir el retiro
-        require(users[msg.sender].balance >= _amount, "Saldo insuficiente");
+        require(users[msg.sender].balance >= _amount, "Saldo insuficiente para la operacion solicitada");
 
         // TODO: Calcular el fee en función del porcentaje definido
         uint256 feeAmount = (_amount * fee) / 10000;
@@ -164,7 +164,7 @@ contract SimpleBank {
      */
     function withdrawTreasury(uint256 _amount) external onlyOwner {
         // TODO: Verificar que haya suficiente balance en la tesorería para cubrir el retiro
-        require(treasuryBalance >= _amount, "Saldo insuficiente en treasury");
+        require(treasuryBalance >= _amount, "Saldo insuficiente en tesoreria para la operacion solicitada");
 
         // TODO: Reducir el balance de la tesorería en la cantidad retirada
         treasuryBalance -= _amount;
