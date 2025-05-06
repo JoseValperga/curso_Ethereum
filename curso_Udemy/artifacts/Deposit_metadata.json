@@ -1,0 +1,74 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"inputs": [],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "sendEther",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"curso_Udemy/deposit.sol": "Deposit"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"curso_Udemy/deposit.sol": {
+			"keccak256": "0xb7cef5f2fdd73fabd8ecde4598bf44b77cb62c4235ebe9f9522d4ca40c3bf11c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://86c3567610a5d5831c65da92c5cb2ce1d2acf8fcb9cf462bcd0722ba7ffd8d7c",
+				"dweb:/ipfs/QmcEo53P6XiPZE5kCDDSZyC9VSpjEkmhbHo9Ku31FEQPio"
+			]
+		}
+	},
+	"version": 1
+}
