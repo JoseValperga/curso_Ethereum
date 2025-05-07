@@ -30,7 +30,11 @@ contract SimpleBank {
     uint256 public treasuryBalance;
 
     // TODO: Define el evento UserRegistered que registre la dirección, el primer nombre y el apellido del usuario
-    event UserRegistered(address indexed user, string firstName, string lastName);
+    event UserRegistered(
+        address indexed user,
+        string firstName,
+        string lastName
+    );
 
     // TODO: Define el evento Deposit para registrar los depósitos de los usuarios con dirección y cantidad
     event Deposit(address indexed user, uint256 amount);
@@ -43,13 +47,19 @@ contract SimpleBank {
 
     // TODO: Crea un modificador onlyRegistered para asegurar que el usuario esté registrado
     modifier onlyRegistered() {
-        require(users[msg.sender].isRegistered, "El usuario no esta registrado");
+        require(
+            users[msg.sender].isRegistered,
+            "El usuario no esta registrado"
+        );
         _;
     }
 
     // TODO: Crea un modificador onlyOwner para asegurar que solo el propietario pueda ejecutar ciertas funciones
     modifier onlyOwner() {
-        require(msg.sender == owner, "Solo el usuario puede llamar a esta funcion");
+        require(
+            msg.sender == owner,
+            "Solo el usuario puede llamar a esta funcion"
+        );
         _;
     }
 
@@ -83,15 +93,26 @@ contract SimpleBank {
      * @param _firstName El primer nombre del usuario
      * @param _lastName El apellido del usuario
      */
-    function register(string calldata _firstName, string calldata _lastName) external {
+    function register(string calldata _firstName, string calldata _lastName)
+        external
+    {
         // TODO: Validar que el primer nombre no esté vacío
-        require(bytes(_firstName).length > 0, "Es obligatorio ingresar el primer nombre");
+        require(
+            bytes(_firstName).length > 0,
+            "Es obligatorio ingresar el primer nombre"
+        );
 
         // TODO: Validar que el apellido no esté vacío
-        require(bytes(_lastName).length > 0, "Es obligatorio ingresar el apellido");
+        require(
+            bytes(_lastName).length > 0,
+            "Es obligatorio ingresar el apellido"
+        );
 
         // TODO: Verificar que el usuario no esté registrado previamente
-        require(!users[msg.sender].isRegistered, "El usuario ya esta registrado");
+        require(
+            !users[msg.sender].isRegistered,
+            "El usuario ya esta registrado"
+        );
 
         // TODO: Crear un nuevo usuario con balance cero y registrado como verdadero
         users[msg.sender] = User({
@@ -137,7 +158,10 @@ contract SimpleBank {
         require(_amount > 0, "Debe ingresar una cantidad");
 
         // TODO: Verificar que el usuario tenga suficiente balance para cubrir el retiro
-        require(users[msg.sender].balance >= _amount, "Saldo insuficiente para la operacion solicitada");
+        require(
+            users[msg.sender].balance >= _amount,
+            "Saldo insuficiente para la operacion solicitada"
+        );
 
         // TODO: Calcular el fee en función del porcentaje definido
         uint256 feeAmount = (_amount * fee) / 10000;
@@ -154,6 +178,11 @@ contract SimpleBank {
         // TODO: Transferir la cantidad después del fee al usuario llamador
         payable(msg.sender).transfer(netAmount);
 
+        /*Se debe usar call en lugar de transfer 
+        (bool success, bytes memory data) = msg.sender.call{ value: netAmount }("");
+        require(success, "Envio fallido");
+        */
+
         // TODO: Emitir el evento Withdrawal con la dirección del usuario, la cantidad y el fee
         emit Withdrawal(msg.sender, _amount, feeAmount);
     }
@@ -164,13 +193,20 @@ contract SimpleBank {
      */
     function withdrawTreasury(uint256 _amount) external onlyOwner {
         // TODO: Verificar que haya suficiente balance en la tesorería para cubrir el retiro
-        require(treasuryBalance >= _amount, "Saldo insuficiente en tesoreria para la operacion solicitada");
+        require(
+            treasuryBalance >= _amount,
+            "Saldo insuficiente en tesoreria para la operacion solicitada"
+        );
 
         // TODO: Reducir el balance de la tesorería en la cantidad retirada
         treasuryBalance -= _amount;
 
         // TODO: Transferir los fondos a la tesorería del propietario
         payable(owner).transfer(_amount);
+        /*Se debe usar call en lugar de transfer 
+        (bool success, bytes memory data) = owner.call{ value: netAmount }("");
+        require(success, "Envio fallido");
+        */
 
         // TODO: Emitir el evento treasuryWithdraw con la dirección del propietario y la cantidad retirada
         emit TreasuryWithdrawal(msg.sender, _amount);
