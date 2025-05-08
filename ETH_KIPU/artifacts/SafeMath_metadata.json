@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ETH_KIPU/BasicImplERC20.sol": "SafeMath"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"ETH_KIPU/BasicImplERC20.sol": {
+			"keccak256": "0x5f4523f36655db02839d0e8e0c34e8237539dba767f8e287e06cf6388eaada58",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://96a2c436a4fcc1c1f75a66fcedfd0721ccb458a4d2d5cc157c128811e05fb35e",
+				"dweb:/ipfs/QmQL3mQJ9DZ64HfRsuvhig28u7NbULZear2RzbAJTDwDrU"
+			]
+		}
+	},
+	"version": 1
+}
