@@ -876,7 +876,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"TrabajoFinalModulo3/auctionNFT.sol": "AuctionToken"
+			"TrabajoFinalModulo3/auctionToken.sol": "AuctionToken"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -1066,7 +1066,7 @@
 				"dweb:/ipfs/QmVUSvooZKEdEdap619tcJjTLcAuH6QBdZqAzWwnAXZAWJ"
 			]
 		},
-		"TrabajoFinalModulo3/auctionNFT.sol": {
+		"TrabajoFinalModulo3/auctionToken.sol": {
 			"keccak256": "0x0935925ca88aeabbddae99f2331f715fce954787d20241cca24113978569a67e",
 			"license": "MIT",
 			"urls": [

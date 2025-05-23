@@ -90,6 +90,7 @@ contract AuctionPlatform {
             bidAmount > auction.highestBid,
             "Bid must be higher than current highest bid"
         ); // Verifica que la oferta sea mayor a la actual.
+        
 
         // TODO: Transferir tokens del ofertante al contrato de subastas.
         // auctionToken.transferFrom(********);
