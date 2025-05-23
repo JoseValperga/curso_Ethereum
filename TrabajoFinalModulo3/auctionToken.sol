@@ -2,16 +2,16 @@
 // Compatible with OpenZeppelin Contracts ^5.0.0
 pragma solidity ^0.8.27;
 
-import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import {ERC721Pausable} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Pausable.sol";
+import {ERC20} from "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import {ERC20Pausable} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Pausable.sol";
+import {ERC20Permit} from "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 
-contract AuctionNFT is ERC721, ERC721Pausable, Ownable {
-    uint256 private _nextTokenId;
-
+contract AuctionToken is ERC20, ERC20Pausable, Ownable, ERC20Permit {
     constructor(address initialOwner)
-        ERC721("AuctionNFT", "ANFT")
+        ERC20("AuctionTKN", "ATKN")
         Ownable(initialOwner)
+        ERC20Permit("AuctionTKN")
     {}
 
     function pause() public onlyOwner {
@@ -22,19 +22,16 @@ contract AuctionNFT is ERC721, ERC721Pausable, Ownable {
         _unpause();
     }
 
-    function safeMint(address to) public onlyOwner returns (uint256) {
-        uint256 tokenId = _nextTokenId++;
-        _safeMint(to, tokenId);
-        return tokenId;
+    function mint(address to, uint256 amount) public onlyOwner {
+        _mint(to, amount);
     }
 
     // The following functions are overrides required by Solidity.
 
-    function _update(address to, uint256 tokenId, address auth)
+    function _update(address from, address to, uint256 value)
         internal
-        override(ERC721, ERC721Pausable)
-        returns (address)
+        override(ERC20, ERC20Pausable)
     {
-        return super._update(to, tokenId, auth);
+        super._update(from, to, value);
     }
 }
