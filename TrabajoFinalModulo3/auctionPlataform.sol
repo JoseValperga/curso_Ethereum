@@ -21,13 +21,13 @@ contract AuctionPlatform {
 
     // Referencia al contrato ERC-20 que se utilizará para las pujas.
     IERC20 public auctionToken;
-    
+
     // Referencia al contrato ERC-721 que contiene los NFTs subastados.
     IERC721 public auctionNFT;
-    
+
     // Contador para asignar IDs únicos a cada subasta.
     uint256 public auctionIdCounter;
-    
+
     // Mapeo para almacenar todas las subastas por su ID.
     mapping(uint256 => Auction) public auctions;
 
@@ -59,13 +59,13 @@ contract AuctionPlatform {
         // TODO: Transferir el NFT del vendedor al contrato de subastas.
         // auctionNFT.transferFrom(******);
         auctionNFT.transferFrom(msg.sender, address(this), tokenId);
-        
+
         // TODO: Asignar un nuevo ID único a la subasta e inicializarla.
         uint256 auctionId = auctionIdCounter++;
 
         auctions[auctionId] = Auction({
             // Dirección del vendedor que creó la subasta.
-            seller: msg.sender,   
+            seller: msg.sender,
             // Inicialmente no hay ofertas.
             highestBidder: address(0),
             // No hay ofertas, por lo que el monto es 0.
@@ -81,23 +81,28 @@ contract AuctionPlatform {
         emit AuctionCreated(auctionId, tokenId, auctions[auctionId].endTime);
     }
 
-      // Función para realizar una oferta en una subasta.
+    // Función para realizar una oferta en una subasta.
     function placeBid(uint256 auctionId, uint256 bidAmount) external {
         Auction storage auction = auctions[auctionId]; // Obtiene los detalles de la subasta.
         require(block.timestamp < auction.endTime, "Auction has ended"); // Verifica que la subasta no haya finalizado.
         require(auction.active, "Auction is not active"); // Verifica que la subasta esté activa.
-        require(bidAmount > auction.highestBid, "Bid must be higher than current highest bid"); // Verifica que la oferta sea mayor a la actual.
+        require(
+            bidAmount > auction.highestBid,
+            "Bid must be higher than current highest bid"
+        ); // Verifica que la oferta sea mayor a la actual.
 
         // TODO: Transferir tokens del ofertante al contrato de subastas.
         // auctionToken.transferFrom(********);
         auctionToken.transferFrom(msg.sender, address(this), bidAmount);
 
-       
-        if (auction.highestBidder != address(0)) { 
+        if (auction.highestBidder != address(0)) {
             // TODO: Reembolsar al ofertante anterior si hubo una oferta previa.
             // auctionToken.transfer(**************);
-            
-
+            auctionToken.transferFrom(
+                address(this),
+                auction.highestBidder,
+                auction.highestBid
+            );
         }
 
         // TODO: Actualizar los datos de la subasta con la nueva oferta.
@@ -105,7 +110,7 @@ contract AuctionPlatform {
         auction.highestBidder = msg.sender;
 
         // TODO: Emitir un evento para registrar la nueva oferta.
-        
+        emit NewBid(auctionId, msg.sender, bidAmount);
     }
 
     // Función para finalizar una subasta.
@@ -122,13 +127,17 @@ contract AuctionPlatform {
         if (auction.highestBidder != address(0)) {
             // TODO: Transferir el NFT al ganador.
             // auctionNFT.transferFrom(*******);
+            auctionNFT.transferFrom(address(this), msg.sender, auction.tokenId);
             // TODO: Transferir el monto ofertado al vendedor.
             // auctionToken.transfer(***********);
+            auctionToken.transferFrom(address(this), auction.seller, auction.highestBid);
         } else {
             // TODO: Devolver el NFT al vendedor si no hubo ofertas.
             // auctionNFT.transferFrom(***********);
+            auctionNFT.transferFrom(address(this), auction.seller, auction.tokenId);
         }
 
         // TODO: Emitir un evento para registrar que la subasta ha finalizado.
+        emit AuctionEnded(auctionId, auction.highestBidder, auction.highestBid);
     }
 }
