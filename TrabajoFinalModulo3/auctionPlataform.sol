@@ -81,23 +81,23 @@ contract AuctionPlatform {
         emit AuctionCreated(auctionId, tokenId, auctions[auctionId].endTime);
     }
 
-    // Función para realizar una oferta en una subasta.
+      // Función para realizar una oferta en una subasta.
     function placeBid(uint256 auctionId, uint256 bidAmount) external {
         Auction storage auction = auctions[auctionId]; // Obtiene los detalles de la subasta.
         require(block.timestamp < auction.endTime, "Auction has ended"); // Verifica que la subasta no haya finalizado.
         require(auction.active, "Auction is not active"); // Verifica que la subasta esté activa.
-        require(
-            bidAmount > auction.highestBid,
-            "Bid must be higher than current highest bid"
-        ); // Verifica que la oferta sea mayor a la actual.
-        
+        require(bidAmount > auction.highestBid, "Bid must be higher than current highest bid"); // Verifica que la oferta sea mayor a la actual.
 
         // TODO: Transferir tokens del ofertante al contrato de subastas.
         // auctionToken.transferFrom(********);
+        auctionToken.transferFrom(msg.sender, address(this), bidAmount);
 
-        // TODO: Reembolsar al ofertante anterior si hubo una oferta previa.
-        if (auction.highestBidder != address(0)) {
+       
+        if (auction.highestBidder != address(0)) { 
+            // TODO: Reembolsar al ofertante anterior si hubo una oferta previa.
             // auctionToken.transfer(**************);
+            
+
         }
 
         // TODO: Actualizar los datos de la subasta con la nueva oferta.
@@ -105,6 +105,7 @@ contract AuctionPlatform {
         auction.highestBidder = msg.sender;
 
         // TODO: Emitir un evento para registrar la nueva oferta.
+        
     }
 
     // Función para finalizar una subasta.
