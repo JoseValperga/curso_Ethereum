@@ -281,11 +281,11 @@
 			]
 		},
 		"TrabajoFinalModulo3/auctionPlataform.sol": {
-			"keccak256": "0xab0e9947f3aef34c21de867b1e0336d5f8fb4d421370a24c41600c342c68429b",
+			"keccak256": "0x2aa0d0cb74c5ffa65cc9253f9684f2122d009385fe62fe93c5626a89b9a5aa62",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://284f9cb0ea7140c01b567c025402aa217c394a658c8cb53595856cac957148d1",
-				"dweb:/ipfs/QmQ9B4dj6UAsHc9kGG82uzPtytvd8w2aYKQRfmWfGNhD8Z"
+				"bzz-raw://eadf5128f2c22e80b0c865fcfd659c35395eaef433757a7b25bf6af9b90bcad1",
+				"dweb:/ipfs/QmZq9fNqc7UjFnrPUhkHk6DdADBjTn75bZEUR8jupVgqUt"
 			]
 		}
 	},
