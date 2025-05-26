@@ -83,6 +83,37 @@
 					{
 						"indexed": false,
 						"internalType": "address",
+						"name": "highestBidder",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "highestBid",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "message",
+						"type": "string"
+					}
+				],
+				"name": "DebugEnd",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "auctionId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
 						"name": "bidder",
 						"type": "address"
 					},
@@ -183,7 +214,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "_tokenId",
 						"type": "uint256"
 					},
 					{
@@ -214,12 +245,12 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "auctionId",
+						"name": "_auctionId",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "bidAmount",
+						"name": "_bidAmount",
 						"type": "uint256"
 					}
 				],
@@ -281,11 +312,11 @@
 			]
 		},
 		"TrabajoFinalModulo3/auctionPlataform.sol": {
-			"keccak256": "0x2aa0d0cb74c5ffa65cc9253f9684f2122d009385fe62fe93c5626a89b9a5aa62",
+			"keccak256": "0x87a0e019d26c134371159dda1f23ca44620bb91039e0f7d7d7109f527373c983",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://eadf5128f2c22e80b0c865fcfd659c35395eaef433757a7b25bf6af9b90bcad1",
-				"dweb:/ipfs/QmZq9fNqc7UjFnrPUhkHk6DdADBjTn75bZEUR8jupVgqUt"
+				"bzz-raw://98e1983f671ed36827f44bd211dc36fea719b85285f68b9d60d6e3e0f531dd5e",
+				"dweb:/ipfs/QmUiKpCcGHp7QbBnW7ThLe2ij5qtJrE7Gv6EPiYa6MBA8z"
 			]
 		}
 	},

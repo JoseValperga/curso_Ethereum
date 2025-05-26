@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+//Jose Valperga
 // Importación de la interfaz IERC20 para interactuar con tokens ERC-20.
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
@@ -48,7 +49,7 @@ contract AuctionPlatform {
         uint256 bidAmount
     );
 
-    // Constructor que inicializa las referencias de los contratos ERC-20 y ERC-721.
+   // Constructor que inicializa las referencias de los contratos ERC-20 y ERC-721.
     constructor(address _auctionToken, address _auctionNFT) {
         auctionToken = IERC20(_auctionToken); // Asigna la dirección del contrato ERC-20.
         auctionNFT = IERC721(_auctionNFT); // Asigna la dirección del contrato ERC-721.
@@ -98,13 +99,7 @@ contract AuctionPlatform {
         if (auction.highestBidder != address(0)) {
             // TODO: Reembolsar al ofertante anterior si hubo una oferta previa.
             // auctionToken.transfer(**************);
-            /*
-            auctionToken.transferFrom(
-                address(this),
-                auction.highestBidder,
-                auction.highestBid
-                */  
-            auctionToken.transfer(auction.highestBidder, auction.highestBid);
+             auctionToken.transfer(auction.highestBidder, auction.highestBid);
         }
 
         // TODO: Actualizar los datos de la subasta con la nueva oferta.
@@ -129,7 +124,11 @@ contract AuctionPlatform {
         if (auction.highestBidder != address(0)) {
             // TODO: Transferir el NFT al ganador.
             // auctionNFT.transferFrom(*******);
-            auctionNFT.transferFrom(address(this), auction.highestBidder, auction.tokenId);
+            auctionNFT.transferFrom(
+                address(this),
+                auction.highestBidder,
+                auction.tokenId
+            );
 
             // TODO: Transferir el monto ofertado al vendedor.
             // auctionToken.transfer(***********);
