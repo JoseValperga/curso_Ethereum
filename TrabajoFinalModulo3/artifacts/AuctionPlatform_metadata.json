@@ -83,37 +83,6 @@
 					{
 						"indexed": false,
 						"internalType": "address",
-						"name": "highestBidder",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "highestBid",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "message",
-						"type": "string"
-					}
-				],
-				"name": "DebugEnd",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "uint256",
-						"name": "auctionId",
-						"type": "uint256"
-					},
-					{
-						"indexed": false,
-						"internalType": "address",
 						"name": "bidder",
 						"type": "address"
 					},
@@ -312,11 +281,11 @@
 			]
 		},
 		"TrabajoFinalModulo3/auctionPlataform.sol": {
-			"keccak256": "0x87a0e019d26c134371159dda1f23ca44620bb91039e0f7d7d7109f527373c983",
+			"keccak256": "0xaf37f6ab91a9bf9648ac4e2147477cebc143c3ef0b97faca8e9be21bef3512d6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://98e1983f671ed36827f44bd211dc36fea719b85285f68b9d60d6e3e0f531dd5e",
-				"dweb:/ipfs/QmUiKpCcGHp7QbBnW7ThLe2ij5qtJrE7Gv6EPiYa6MBA8z"
+				"bzz-raw://2fd965ea45f71626d739ebebd4dc041514b0232cbc3ba180f925d6731710762f",
+				"dweb:/ipfs/QmfYzeSpbftkQ92KsDvBpKL49fHcGuEpVbTpfwa1SqUXy6"
 			]
 		}
 	},

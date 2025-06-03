@@ -928,11 +928,11 @@
 			]
 		},
 		"TrabajoFinalModulo3/auctionNFT.sol": {
-			"keccak256": "0x37025262e45fe6715e6159c5065b7d417171e94d027e12a7b8a2f82b59157ace",
+			"keccak256": "0x3bb72ba4c3312a2a068b4b7a11ac233a9f3daacfe9cfbe7c7803d54da0a2a60c",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c12f7da11d778d5ccc6992214dfd7d41aa487ee06d8a1ea50e63582e2d1f9256",
-				"dweb:/ipfs/QmbqgmJatrSyCmPD5tsBD5eWF5DMm1NtnEUGNs7p7o1ijD"
+				"bzz-raw://00ed7b9b9ccc42a72c4168ebf24a1bdd8d6369c2ca3aac532fd77170926402b0",
+				"dweb:/ipfs/QmTJ64F7h2iqBKHKqCFjZbC8rXuVteP4XKzgZqi5bRsNBv"
 			]
 		}
 	},

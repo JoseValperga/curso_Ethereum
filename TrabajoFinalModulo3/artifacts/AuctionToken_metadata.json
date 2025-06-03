@@ -1067,11 +1067,11 @@
 			]
 		},
 		"TrabajoFinalModulo3/auctionToken.sol": {
-			"keccak256": "0x0935925ca88aeabbddae99f2331f715fce954787d20241cca24113978569a67e",
+			"keccak256": "0x05876e4995667a2f301bff8a9f30d52d5256df8de348e986b70336dcd1e1c2db",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://22248ed216128225d71497c78adc7fa2255e571f3297da3d90891ce3befb89b0",
-				"dweb:/ipfs/QmcuAKvncxUQFUyQaZbHf7KgQWQKgWcUzTgobBH77dw2eb"
+				"bzz-raw://cb8efd359dff9208ef7f25851f494ac5dcda5ea1b9e10bdec52b03ca9dfd19fe",
+				"dweb:/ipfs/QmUN9LFwrb11AN1yfBSRwa24n2GaJLPHjSJGVJmmEDGv7Q"
 			]
 		}
 	},
