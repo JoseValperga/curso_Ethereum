@@ -1,0 +1,185 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "result",
+						"type": "uint256"
+					}
+				],
+				"name": "Dummy",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "balances",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fillArrayStorage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "incrementBalanceStorage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "incrementBalanceWithMemory",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "numbers",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "operateInMemoryAndEmit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newValue",
+						"type": "uint256"
+					}
+				],
+				"name": "setValueAlways",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newValue",
+						"type": "uint256"
+					}
+				],
+				"name": "setValueIfDifferent",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "value",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"title": "GasOptimizationDemo",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"fillArrayStorage()": {
+					"notice": "Agrega 10 elementos a un array en storage (costoso)"
+				},
+				"incrementBalanceStorage()": {
+					"notice": "Incrementa el balance del sender directamente en storage (consume gas)"
+				},
+				"incrementBalanceWithMemory()": {
+					"notice": "Usa memoria local para operar y luego guarda el resultado (más eficiente)"
+				},
+				"operateInMemoryAndEmit()": {
+					"notice": "Realiza operaciones en memoria y emite un evento (permite medir gas)"
+				},
+				"setValueAlways(uint256)": {
+					"notice": "Escribe un valor en storage sin verificar si cambió"
+				},
+				"setValueIfDifferent(uint256)": {
+					"notice": "Solo escribe en storage si el nuevo valor es diferente"
+				}
+			},
+			"notice": "Contrato para demostrar diferencias en consumo de gas en distintas operaciones de escritura y lectura",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ETH_KIPU/gasdemo.sol": "GasOptimizationDemo"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"ETH_KIPU/gasdemo.sol": {
+			"keccak256": "0x0dcb3a6943bcc28085ce5731a7d5c39355fdc36556f770ea1c3efdfdcc287751",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1907309bce21d2276f70548e5fa1033896666cd929e9efe036c8fa8c8d2e8b20",
+				"dweb:/ipfs/QmXdvWTFbdSWkCv4h1c1voTQRYacX5hZV9NPf1QE5q6i8T"
+			]
+		}
+	},
+	"version": 1
+}

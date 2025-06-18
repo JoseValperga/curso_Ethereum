@@ -46,31 +46,6 @@
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "from",
-						"type": "address"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "to",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "Transfer",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
 						"name": "owner",
 						"type": "address"
 					},
@@ -199,24 +174,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_receiver",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_amount",
-						"type": "uint256"
-					}
-				],
-				"name": "transferBetweenUsers",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "treasury",
 				"outputs": [
@@ -330,13 +287,6 @@
 						"_lastName": "El apellido del usuario"
 					}
 				},
-				"transferBetweenUsers(address,uint256)": {
-					"details": "Función para transferencias de ETH entre usuarios",
-					"params": {
-						"_amount": "Monto a transferir (en wei)",
-						"_receiver": "Dirección del usuario destino"
-					}
-				},
 				"withdraw(uint256)": {
 					"details": "Función para retirar ETH de la cuenta del usuario",
 					"params": {
@@ -350,7 +300,7 @@
 					}
 				}
 			},
-			"title": "SimpleBankExtended - Jose Valperga",
+			"title": "SimpleBank - Jose Valperga",
 			"version": 1
 		},
 		"userdoc": {
@@ -361,7 +311,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"TrabajoFinalModulo2/SimpleBankExtended.sol": "SimpleBank"
+			"TrabajoFinalModulo2/SimpleBank.sol": "SimpleBank"
 		},
 		"evmVersion": "cancun",
 		"libraries": {},
@@ -375,12 +325,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"TrabajoFinalModulo2/SimpleBankExtended.sol": {
-			"keccak256": "0x09a5016de56617724376b8f29f1d2c98a62c47ff6a9ff32126d1708d3c7dd2cf",
+		"TrabajoFinalModulo2/SimpleBank.sol": {
+			"keccak256": "0xe79d3cb9af5815b83fd6595e226419feafcc4647c47b5b6391e6399f18210a05",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c7df4742855e56d819ed18fff12bdcf50379b34957263b93372cf40845963b3f",
-				"dweb:/ipfs/QmQZzkDbVmJoc8x2KzraedeXxEP5NpQB4QSMeZpJECRdmx"
+				"bzz-raw://965b675111ca7fecc241f673df99927296d2eef19fdcdceb95493607af650511",
+				"dweb:/ipfs/QmYQQfYd23vwdTxxtnUVCDEhDnJTzjvnviKZ1tZE6qknKq"
 			]
 		}
 	},
