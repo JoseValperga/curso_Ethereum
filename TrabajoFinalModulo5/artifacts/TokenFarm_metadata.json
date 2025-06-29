@@ -1,0 +1,525 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "contract DAppToken",
+						"name": "_dappToken",
+						"type": "address"
+					},
+					{
+						"internalType": "contract LPToken",
+						"name": "_lpToken",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Deposit",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "RewardsClaimed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "totalRewards",
+						"type": "uint256"
+					}
+				],
+				"name": "RewardsDistributed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Withdraw",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "accumulatedFees",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "claimRewards",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "dappToken",
+				"outputs": [
+					{
+						"internalType": "contract DAppToken",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "deposit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "distributeRewardsAll",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "feePercentage",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "beneficiary",
+						"type": "address"
+					}
+				],
+				"name": "getPendingRewards",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "lpToken",
+				"outputs": [
+					{
+						"internalType": "contract LPToken",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "rewardPerBlock",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newFee",
+						"type": "uint256"
+					}
+				],
+				"name": "setFeePercentage",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_newReward",
+						"type": "uint256"
+					}
+				],
+				"name": "setRewardPerBlock",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "stakers",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "stakingBalance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "checkpoint",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "pendingRewards",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "hasStaked",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "isStaking",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "stakersList",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalStakingBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "withdrawAccumulatedFees",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"deposit(uint256)": {
+					"params": {
+						"_amount": "Cantidad de tokens LP a depositar."
+					}
+				},
+				"getPendingRewards(address)": {
+					"params": {
+						"beneficiary": "La dirección del usuario para consultar."
+					},
+					"returns": {
+						"_0": "rewards Pendiente total de rewards considerando el tiempo pasado desde el último checkpoint."
+					}
+				},
+				"setFeePercentage(uint256)": {
+					"details": "El porcentaje máximo permitido es 1000 (10%).",
+					"params": {
+						"_newFee": "Nuevo porcentaje de comisión en basis points (10000 = 100%)."
+					}
+				},
+				"setRewardPerBlock(uint256)": {
+					"details": "La recompensa debe ser positiva.",
+					"params": {
+						"_newReward": "Nueva recompensa por bloque."
+					}
+				},
+				"withdrawAccumulatedFees(address)": {
+					"details": "Solo el owner puede retirar las comisiones acumuladas.",
+					"params": {
+						"to": "Dirección a la que se enviarán las comisiones."
+					}
+				}
+			},
+			"title": "Proportional Token Farm",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"claimRewards()": {
+					"notice": "Reclama recompensas pendientes."
+				},
+				"deposit(uint256)": {
+					"notice": "Deposita tokens LP para staking."
+				},
+				"distributeRewardsAll()": {
+					"notice": "Distribuye recompensas a todos los usuarios en staking."
+				},
+				"getPendingRewards(address)": {
+					"notice": "Calcula las recompensas pendientes del usuario hasta el bloque actual, sin modificar el estado."
+				},
+				"setFeePercentage(uint256)": {
+					"notice": "Configura el porcentaje de comisión para el contrato."
+				},
+				"setRewardPerBlock(uint256)": {
+					"notice": "Configura la recompensa por bloque."
+				},
+				"withdraw()": {
+					"notice": "Retira todos los tokens LP en staking."
+				},
+				"withdrawAccumulatedFees(address)": {
+					"notice": "Retira las comisiones acumuladas en el contrato."
+				}
+			},
+			"notice": "Una granja de staking donde las recompensas se distribuyen proporcionalmente al total stakeado.",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"TrabajoFinalModulo5/tokenfarm.sol": "TokenFarm"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/access/Ownable.sol": {
+			"keccak256": "0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8ed324d3920bb545059d66ab97d43e43ee85fd3bd52e03e401f020afb0b120f6",
+				"dweb:/ipfs/QmfEckWLmZkDDcoWrkEvMWhms66xwTLff9DDhegYpvHo1a"
+			]
+		},
+		"@openzeppelin/contracts/interfaces/draft-IERC6093.sol": {
+			"keccak256": "0x880da465c203cec76b10d72dbd87c80f387df4102274f23eea1f9c9b0918792b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://399594cd8bb0143bc9e55e0f1d071d0d8c850a394fb7a319d50edd55d9ed822b",
+				"dweb:/ipfs/QmbPZzgtT6LEm9CMqWfagQFwETbV1ztpECBB1DtQHrKiRz"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/ERC20.sol": {
+			"keccak256": "0x41f6b3b9e030561e7896dbef372b499cc8d418a80c3884a4d65a68f2fdc7493a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://80b0992a11b2fd1f75ced2971696d07bbd1d19ce6761dd50d8b6d48aa435f42a",
+				"dweb:/ipfs/QmZDe5xd2gXHjVEjv9t8C1KQ68K5T8qFwdinwQgmP3rF3x"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0xe06a3f08a987af6ad2e1c1e774405d4fe08f1694b67517438b467cecf0da0ef7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://df6f0c459663c9858b6cba2cda1d14a7d05a985bed6d2de72bd8e78c25ee79db",
+				"dweb:/ipfs/QmeTTxZ7qVk9rjEv2R4CpCwdf8UMCcRqDNMvzNxHc3Fnn9"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/extensions/ERC20Pausable.sol": {
+			"keccak256": "0x756aee61d83960d324973de3a64920a02b480efe662b611fb05ea506d844aa55",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4dfb71ab2f5fcc530226a25bba4d808f4d22a7f383cae4a3be3629ec057b276c",
+				"dweb:/ipfs/QmRzyetUjbr9Gx1pcXYSsE5rz4XypfEbZgmBvZKUNUJQLR"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol": {
+			"keccak256": "0x70f2f713b13b7ce4610bcd0ac9fec0f3cc43693b043abcb8dc40a42a726eb330",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c13d13304ac79a83ab1c30168967d19e2203342ebbd6a9bbce4db7550522dcbf",
+				"dweb:/ipfs/QmeN5jKMN2vw5bhacr6tkg78afbTTZUeaacNHqjWt4Ew1r"
+			]
+		},
+		"@openzeppelin/contracts/utils/Context.sol": {
+			"keccak256": "0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6a708e8a5bdb1011c2c381c9a5cfd8a9a956d7d0a9dc1bd8bcdaf52f76ef2f12",
+				"dweb:/ipfs/Qmax9WHBnVsZP46ZxEMNRQpLQnrdE4dK8LehML1Py8FowF"
+			]
+		},
+		"@openzeppelin/contracts/utils/Pausable.sol": {
+			"keccak256": "0xdb484371dfbb848cb6f5d70464e9ac9b2900e4164ead76bbce4fef0b44bcc68f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f9d6f6f6600a2bec622f699081b58350873b5e63ce05464d17d674a290bb8a7c",
+				"dweb:/ipfs/QmQKVzSQY1PM3Bid4QhgVVZyx6B4Jx7XgaQzLKHj38vJz8"
+			]
+		},
+		"TrabajoFinalModulo5/DappToken.sol": {
+			"keccak256": "0x6ecbada1aa662d7d28bf58e70fe1a2ae283aad58927d484a8dca18262fcb6d59",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d44de5091dfa2e5af10c0eb4bc8c2f02428009dbca84f93a04db058ce872eebb",
+				"dweb:/ipfs/QmeT4e8k8oCf5BsMT5P9FBB529Cv6SKMD79abUGqizSod8"
+			]
+		},
+		"TrabajoFinalModulo5/LPToken.sol": {
+			"keccak256": "0x88c496d3c30e36e45eee65bfe510ffbe49c49e11c2e83e7edbdef664b47f8556",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6c7427746c6eed2da2d37e8942cd18515293002992ac30e611fd1d320a687ded",
+				"dweb:/ipfs/QmVstiZc8jaAN2DCnJ64MPfbe8jQzZANWmUDXrseZh39eh"
+			]
+		},
+		"TrabajoFinalModulo5/tokenfarm.sol": {
+			"keccak256": "0x82c70e229007ced98427674385698b911f7d301dd3eb70ddc6d8de364ae29cfa",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://94b5571c3abe6047dbc7da35c95f739301d91c88a001fa8018a73cd4b556668c",
+				"dweb:/ipfs/QmULwk4PrDXr5BDepNtfsVVWo4v1XitG2NmLKxgBMxoPzz"
+			]
+		}
+	},
+	"version": 1
+}
