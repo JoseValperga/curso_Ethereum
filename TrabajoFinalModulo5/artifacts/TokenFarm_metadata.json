@@ -418,7 +418,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"TrabajoFinalModulo5/tokenfarm.sol": "TokenFarm"
+			"TrabajoFinalModulo5/TokenFarm.sol": "TokenFarm"
 		},
 		"evmVersion": "prague",
 		"libraries": {},
@@ -512,7 +512,7 @@
 				"dweb:/ipfs/QmVstiZc8jaAN2DCnJ64MPfbe8jQzZANWmUDXrseZh39eh"
 			]
 		},
-		"TrabajoFinalModulo5/tokenfarm.sol": {
+		"TrabajoFinalModulo5/TokenFarm.sol": {
 			"keccak256": "0x82c70e229007ced98427674385698b911f7d301dd3eb70ddc6d8de364ae29cfa",
 			"license": "MIT",
 			"urls": [
