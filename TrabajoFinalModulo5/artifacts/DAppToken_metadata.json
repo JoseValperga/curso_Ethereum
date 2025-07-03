@@ -700,11 +700,11 @@
 			]
 		},
 		"TrabajoFinalModulo5/DappToken.sol": {
-			"keccak256": "0x6ecbada1aa662d7d28bf58e70fe1a2ae283aad58927d484a8dca18262fcb6d59",
+			"keccak256": "0xdca700910a110d1684c356b8f54bf7d54566b2700afa6bfd9bab8d85ac30a422",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d44de5091dfa2e5af10c0eb4bc8c2f02428009dbca84f93a04db058ce872eebb",
-				"dweb:/ipfs/QmeT4e8k8oCf5BsMT5P9FBB529Cv6SKMD79abUGqizSod8"
+				"bzz-raw://f44196c87e6f97c9df6dc14bf65f1aa98e911518414b67bccd72162ef076b742",
+				"dweb:/ipfs/QmV9TGcjduaJtdKi4eV5Zn72LPm8ALJsfp4YNAm8KgzVKw"
 			]
 		}
 	},
