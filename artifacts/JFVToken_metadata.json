@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.26+commit.8a97fa7a"
+		"version": "0.8.30+commit.73712a01"
 	},
 	"language": "Solidity",
 	"output": {
@@ -1260,7 +1260,7 @@
 		"compilationTarget": {
 			"preventa/JFVToken.sol": "JFVToken"
 		},
-		"evmVersion": "cancun",
+		"evmVersion": "prague",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -1489,11 +1489,11 @@
 			]
 		},
 		"preventa/JFVToken.sol": {
-			"keccak256": "0x185e8abe6c95e4f55854eacc9003d3a0081ae0065c05e87681a04589fad167c3",
+			"keccak256": "0xa6701a5ee53a1cdce31de811bcb43811e365116ab66944cb9ba1e9efa1194716",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2bc018f091bd2209042042303453228e339d2cc3cf6ea3a41c46d3eb4e66efaa",
-				"dweb:/ipfs/Qma4DNafJgKs51qEnaxLVfVb6e1wtxyDLZduSKKW4AMBSZ"
+				"bzz-raw://13db1d647775e5231f714dc46575bfb6f5a2268c49f58ee797e647d5960213be",
+				"dweb:/ipfs/QmVH7g5Cn99LVzxL8312aBeFmTZ2m6LL375iVw7DLsjPNr"
 			]
 		}
 	},

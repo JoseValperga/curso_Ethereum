@@ -1,31 +1,31 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.24;
-
-/**
- * @title JFVCrowdsale
- * @notice Venta de JFV a cambio de ETH con ventana de tiempo, soft/hard cap,
- *         límites por wallet, TGE y refunds. Minteo diferido por claims.
- *
- * Modelo: "claim-based"
- * - buyTokens: registra aportes y asigna tokens (NO mintea aún)
- * - finalize: decide éxito/fracaso cuando cierra la venta
- * - claimTGE: mintea % TGE a cada comprador si la venta fue exitosa
- * - claimRefund: devuelve ETH si no se alcanzó el soft cap
- *
- * NOTA: El vesting del 80% restante se recomienda en un contrato externo;
- *       este MVP no incluye vesting embebido para mantener el tamaño y la claridad.
- */
+pragma solidity 0.8.30;
+import "./IJFVToken.sol";
+import "./JFVToken.sol";
 
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
 import {AccessControl} from "@openzeppelin/contracts/access/AccessControl.sol";
-import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-//import {IJFVToken} from "../scripts/interfaces/IJFVToken.sol"; // interfaz mínima del mint;
 
 contract JFVCrowdsale is ReentrancyGuard, Pausable, AccessControl {
-    // ========= Roles =========
+    // Roles
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
-    bytes32 public constant CONFIG_ROLE = keccak256("CONFIG_ROLE"); // usar sólo en testnet/preventa
+    bytes32 public constant CONFIG_ROLE = keccak256("CONFIG_ROLE");
+
+    // ========= Config principal =========
+    IJFVToken public immutable token; // JFVToken con MINTER_ROLE otorgado a este contrato
+    address public wallet; // Tesorería
+    uint256 public rate; // JFV por 1 ETH (rate con 18 decimales)
+
+    uint256 public immutable softCap; // ETH mínimo para éxito
+    uint256 public immutable hardCap; // ETH máximo aceptado
+    uint256 public openingTime; // inicio
+    uint256 public closingTime; // fin
+
+    uint256 public minContribution; // por wallet (suma total)
+    uint256 public maxContribution; // por wallet (suma total)
+
+    uint256 public immutable tgeBps; // % TGE en basis points (ej. 2000 = 20%)
 
     // ========= Eventos =========
     event TokensPurchased(
@@ -38,10 +38,22 @@ contract JFVCrowdsale is ReentrancyGuard, Pausable, AccessControl {
     event RefundsEnabled();
     event Refunded(address indexed beneficiary, uint256 valueETH);
     event TGEClaimed(address indexed beneficiary, uint256 amountJFV);
+    // cambios de config (para pruebas)
     event LimitsUpdated(uint256 minContribution, uint256 maxContribution);
     event TimesUpdated(uint64 openingTime, uint64 closingTime);
     event RateUpdated(uint256 oldRate, uint256 newRate);
     event WalletUpdated(address oldWallet, address newWallet);
+
+    // ========= Estado =========
+    uint256 public weiRaised;
+    uint256 public tokensSold;
+
+    mapping(address => uint256) public contributed; // ETH total por comprador
+    mapping(address => uint256) public allocated; // JFV asignados por comprador
+    mapping(address => uint256) public tgeClaimed; // JFV TGE reclamados
+
+    bool public finalized;
+    bool public refunding;
 
     // ========= Errores =========
     error SaleNotOpen();
@@ -54,95 +66,87 @@ contract JFVCrowdsale is ReentrancyGuard, Pausable, AccessControl {
     error NothingToClaim();
     error ZeroAddress();
     error InvalidParams();
-
-    // ========= Inmutables / configuración principal =========
-    IJFVToken public immutable token; // JFVToken con MINTER_ROLE otorgado a este contrato
-    address public wallet; // Tesorería receptora del ETH si hay éxito
-    uint256 public rate; // JFV por 1 ETH
-
-    uint256 public immutable softCap; // ETH mínimo para éxito
-    uint256 public immutable hardCap; // ETH máximo aceptado
-    uint64 public openingTime; // inicio
-    uint64 public closingTime; // fin
-
-    uint256 public minContribution; // por wallet (suma total)
-    uint256 public maxContribution; // por wallet (suma total)
-
-    uint16 public immutable tgeBps; // % TGE en basis points (ej. 2000 = 20%)
-
-    // ========= Estado de la venta =========
-    uint256 public weiRaised;
-    uint256 public tokensSold;
-
-    mapping(address => uint256) public contributed; // ETH total por comprador
-    mapping(address => uint256) public allocated; // JFV asignados por comprador
-    mapping(address => uint256) public tgeClaimed; // JFV TGE reclamados
-
-    bool public finalized;
-    bool public refunding;
+    error MintFailed();
 
     constructor(
-        address token_,
-        address wallet_,
-        uint256 rate_,
-        uint256 softCap_,
-        uint256 hardCap_,
-        uint64 openingTime_,
-        uint64 closingTime_,
-        uint256 minContribution_,
-        uint256 maxContribution_,
-        uint16 tgeBps_,
-        address admin_ // DEFAULT_ADMIN_ROLE holder (ej. mi address / multisig)
+        address _token,
+        address _wallet,
+        uint256 _rate, // tokens por 1 ETH (con 18 decimales)
+        uint256 _softCap,
+        uint256 _hardCap,
+        uint256 _openingTime,
+        uint256 _closingTime,
+        uint256 _minContribution,
+        uint256 _maxContribution,
+        uint256 _tgeBps,
+        address _admin
     ) {
-        if (
-            token_ == address(0) ||
-            wallet_ == address(0) ||
-            admin_ == address(0) ||
-            rate_ == 0 ||
-            softCap_ == 0 ||
-            hardCap_ == 0 ||
-            hardCap_ <= softCap_ ||
-            openingTime_ >= closingTime_ ||
-            minContribution_ == 0 ||
-            maxContribution_ == 0 ||
-            maxContribution_ < minContribution_ ||
-            tgeBps_ > 10_000
-        ) revert InvalidParams();
+        require(_token != address(0), "Token address is zero");
+        require(_wallet != address(0), "Wallet address is zero");
+        require(_rate > 0, "Rate is zero");
+        require(_softCap > 0, "Soft cap is zero");
+        require(_hardCap > 0, "Hard cap is zero");
+        require(_softCap <= _hardCap, "Soft cap exceeds hard cap");
+        require(_openingTime >= block.timestamp, "Opening before now");
+        require(_closingTime > _openingTime, "Closing before opening");
+        require(_minContribution > 0, "Min contribution is zero");
+        require(_maxContribution > 0, "Max contribution is zero");
+        require(_minContribution <= _maxContribution, "Min > Max");
+        require(_tgeBps <= 10_000, "TGE bps > 10000");
+        require(_admin != address(0), "Admin address is zero");
 
-        token = IJFVToken(token_);
-        wallet = wallet_;
+        token = IJFVToken(_token);
+        wallet = _wallet;
+        rate = _rate;
+        softCap = _softCap;
+        hardCap = _hardCap;
+        openingTime = _openingTime;
+        closingTime = _closingTime;
+        minContribution = _minContribution;
+        maxContribution = _maxContribution;
+        tgeBps = _tgeBps;
 
-        rate = rate_;
-        softCap = softCap_;
-        hardCap = hardCap_;
-        openingTime = openingTime_;
-        closingTime = closingTime_;
-        minContribution = minContribution_;
-        maxContribution = maxContribution_;
-        tgeBps = tgeBps_;
-
-        _grantRole(DEFAULT_ADMIN_ROLE, admin_);
-        _grantRole(PAUSER_ROLE, admin_);
-        _grantRole(CONFIG_ROLE, admin_); // útil en testnet; puedes revocarlo en mainnet
+        _grantRole(DEFAULT_ADMIN_ROLE, _admin);
+        _grantRole(PAUSER_ROLE, _admin);
+        _grantRole(CONFIG_ROLE, _admin);
     }
 
-    // ========= Lecturas de estado =========
+    // --- control operativo ---
+    function pause() external onlyRole(PAUSER_ROLE) {
+        _pause();
+    }
+
+    function unpause() external onlyRole(PAUSER_ROLE) {
+        _unpause();
+    }
+
+    // --- bloquear ETH directo ---
+    receive() external payable {
+        revert("Use buyTokens()");
+    }
+
+    fallback() external payable {
+        revert("Invalid call");
+    }
+
     function isOpen() public view returns (bool) {
-        return
-            block.timestamp >= openingTime &&
+        return (block.timestamp >= openingTime &&
             block.timestamp <= closingTime &&
             weiRaised < hardCap &&
-            !paused();
+            !finalized);
     }
 
     function isClosed() public view returns (bool) {
-        return block.timestamp > closingTime || weiRaised >= hardCap;
+        return (block.timestamp > closingTime ||
+            weiRaised >= hardCap ||
+            finalized);
     }
 
-    // ========= Compra =========
     function buyTokens(
         address beneficiary
     ) external payable nonReentrant whenNotPaused {
+        require(beneficiary == msg.sender, "Only self-buy");
+        
         if (!isOpen()) revert SaleNotOpen();
         if (beneficiary == address(0)) revert ZeroAddress();
         if (msg.value == 0) revert MinMaxViolation();
@@ -156,9 +160,8 @@ contract JFVCrowdsale is ReentrancyGuard, Pausable, AccessControl {
             revert MinMaxViolation();
         }
 
-        // calcular tokens asignados
-        // amountJFV = msg.value * rate (assume 18/18)
-        uint256 amountJFV = msg.value * rate;
+        // Calcular tokens: rate = tokens por 1 ETH (18 decimales)
+        uint256 amountJFV = (msg.value * rate) / 1e18;
 
         weiRaised += msg.value;
         tokensSold += amountJFV;
@@ -168,16 +171,12 @@ contract JFVCrowdsale is ReentrancyGuard, Pausable, AccessControl {
         emit TokensPurchased(msg.sender, beneficiary, msg.value, amountJFV);
     }
 
-    // ========= Finalización =========
-    function finalize() external nonReentrant {
+    function finalize() external {
         if (!isClosed()) revert SaleNotClosed();
         if (finalized) revert AlreadyFinalized();
-
         finalized = true;
-
         if (weiRaised >= softCap) {
             emit Finalized(true);
-            // éxito: no transferimos ETH aún; tesorería hará withdrawETH()
         } else {
             refunding = true;
             emit RefundsEnabled();
@@ -185,7 +184,6 @@ contract JFVCrowdsale is ReentrancyGuard, Pausable, AccessControl {
         }
     }
 
-    // ========= Claims =========
     function claimTGE() external nonReentrant whenNotPaused {
         if (!finalized || refunding) revert SoftCapNotReached();
 
@@ -193,98 +191,81 @@ contract JFVCrowdsale is ReentrancyGuard, Pausable, AccessControl {
         if (alloc == 0) revert NothingToClaim();
 
         uint256 tgeTotal = (alloc * tgeBps) / 10_000;
+
         uint256 already = tgeClaimed[msg.sender];
         if (tgeTotal <= already) revert NothingToClaim();
 
         uint256 due = tgeTotal - already;
-        tgeClaimed[msg.sender] = tgeTotal; // marcar todo el TGE como reclamado (idempotente)
+        tgeClaimed[msg.sender] = tgeTotal;
 
-        // mintear desde el token hacia el usuario (este contrato debe tener MINTER_ROLE)
-        token.mint(msg.sender, due);
+        try token.mint(msg.sender, due) {
+            // ok
+        } catch {
+            revert MintFailed();
+        }
 
         emit TGEClaimed(msg.sender, due);
     }
 
-    // ========= Refunds (si falla soft cap) =========
-    function claimRefund() external nonReentrant {
+    function claimRefunds() external nonReentrant whenNotPaused {
         if (!refunding) revert RefundsNotEnabled();
-
         uint256 amount = contributed[msg.sender];
         if (amount == 0) revert NothingToClaim();
 
         contributed[msg.sender] = 0;
-        // Interacción al final (pull payment)
         (bool ok, ) = payable(msg.sender).call{value: amount}("");
         require(ok, "Refund transfer failed");
-
         emit Refunded(msg.sender, amount);
     }
 
     // ========= Retiro de ETH (tesorería) =========
-    function withdrawETH() external nonReentrant {
+    function withdrawETH() external nonReentrant onlyRole(CONFIG_ROLE) {
         if (!finalized || refunding) revert SoftCapNotReached();
         uint256 bal = address(this).balance;
         (bool ok, ) = payable(wallet).call{value: bal}("");
         require(ok, "Withdraw failed");
     }
 
-    // ========= Admin / Operación =========
-    function pause() external onlyRole(PAUSER_ROLE) {
-        _pause();
+    // ========= Helpers de lectura (opcional para front) =========
+    function tgeClaimableOf(address user) external view returns (uint256) {
+        if (!finalized || refunding) return 0;
+        uint256 alloc = allocated[user];
+        if (alloc == 0) return 0;
+        uint256 tgeTotal = (alloc * tgeBps) / 10_000;
+        uint256 already = tgeClaimed[user];
+        if (tgeTotal <= already) return 0;
+        return tgeTotal - already;
     }
 
-    function unpause() external onlyRole(PAUSER_ROLE) {
-        _unpause();
-    }
-
-    // Los siguientes setters son útiles para testnet y **solo antes de abrir**
-    function setLimits(
-        uint256 newMin,
-        uint256 newMax
-    ) external onlyRole(CONFIG_ROLE) {
-        if (block.timestamp >= openingTime) revert SaleNotOpen();
-        if (newMin == 0 || newMax == 0 || newMax < newMin)
-            revert InvalidParams();
-        minContribution = newMin;
-        maxContribution = newMax;
-        emit LimitsUpdated(newMin, newMax);
+    // ========= Setters de prueba (proteger con CONFIG_ROLE) =========
+    function setRate(uint256 newRate) external onlyRole(CONFIG_ROLE) {
+        emit RateUpdated(rate, newRate);
+        rate = newRate;
     }
 
     function setTimes(
-        uint64 newOpen,
-        uint64 newClose
+        uint64 start_,
+        uint64 end_
     ) external onlyRole(CONFIG_ROLE) {
-        if (block.timestamp >= openingTime) revert SaleNotOpen();
-        if (newOpen >= newClose) revert InvalidParams();
-        openingTime = newOpen;
-        closingTime = newClose;
-        emit TimesUpdated(newOpen, newClose);
+        require(start_ < end_, "time");
+        emit TimesUpdated(start_, end_);
+        openingTime = start_;
+        closingTime = end_;
     }
 
-    function setRate(uint256 newRate) external onlyRole(CONFIG_ROLE) {
-        if (block.timestamp >= openingTime) revert SaleNotOpen();
-        if (newRate == 0) revert InvalidParams();
-        uint256 old = rate;
-        rate = newRate;
-        emit RateUpdated(old, newRate);
+    function setLimits(
+        uint256 min_,
+        uint256 max_
+    ) external onlyRole(CONFIG_ROLE) {
+        require(min_ > 0 && max_ > 0 && min_ <= max_, "limits");
+        emit LimitsUpdated(min_, max_);
+        minContribution = min_;
+        maxContribution = max_;
     }
 
     function setWallet(address newWallet) external onlyRole(CONFIG_ROLE) {
-        if (block.timestamp >= openingTime) revert SaleNotOpen();
         if (newWallet == address(0)) revert ZeroAddress();
-        address old = wallet;
+        emit WalletUpdated(wallet, newWallet);
         wallet = newWallet;
-        emit WalletUpdated(old, newWallet);
-    }
-
-    // Fallback / receive para ETH directo (opcional: redirigir a buyTokens si querés)
-    receive() external payable {
-        // Mantener fondos aquí; compras deben llamarse con buyTokens
-        // para registrar beneficiary explícito.
     }
 }
-
-interface IJFVToken {
-    function mint(address to, uint256 amount) external;
-}
-
