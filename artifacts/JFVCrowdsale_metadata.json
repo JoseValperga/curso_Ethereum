@@ -109,6 +109,27 @@
 			},
 			{
 				"inputs": [],
+				"name": "FailedCall",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "balance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "needed",
+						"type": "uint256"
+					}
+				],
+				"name": "InsufficientBalance",
+				"type": "error"
+			},
+			{
+				"inputs": [],
 				"name": "InvalidParams",
 				"type": "error"
 			},
@@ -1022,6 +1043,16 @@
 						"details": "The operation failed because the contract is not paused."
 					}
 				],
+				"FailedCall()": [
+					{
+						"details": "A call to an address target failed. The target may have reverted."
+					}
+				],
+				"InsufficientBalance(uint256,uint256)": [
+					{
+						"details": "The ETH balance of the account is not enough to perform the operation."
+					}
+				],
 				"ReentrancyGuardReentrantCall()": [
 					{
 						"details": "Unauthorized reentrant call."
@@ -1093,6 +1124,22 @@
 		"remappings": []
 	},
 	"sources": {
+		"@Openzeppelin/contracts/utils/Address.sol": {
+			"keccak256": "0x6d0ae6e206645341fd122d278c2cb643dea260c190531f2f3f6a0426e77b00c0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://032d1201d839435be2c85b72e33206b3ea980c569d6ebf7fa57d811ab580a82f",
+				"dweb:/ipfs/QmeqQjAtMvdZT2tG7zm39itcRJkuwu8AEReK6WRnLJ18DD"
+			]
+		},
+		"@Openzeppelin/contracts/utils/Errors.sol": {
+			"keccak256": "0x6afa713bfd42cf0f7656efa91201007ac465e42049d7de1d50753a373648c123",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ba1d02f4847670a1b83dec9f7d37f0b0418d6043447b69f3a29a5f9efc547fcf",
+				"dweb:/ipfs/QmQ7iH2keLNUKgq2xSWcRmuBE5eZ3F5whYAkAGzCNNoEWB"
+			]
+		},
 		"@openzeppelin/contracts/access/AccessControl.sol": {
 			"keccak256": "0xc1bebdee8943bd5e9ef1e0f2e63296aa1dd4171a66b9e74d0286220e891e1458",
 			"license": "MIT",
@@ -1326,11 +1373,11 @@
 			]
 		},
 		"preventa/JFVCrowdsale.sol": {
-			"keccak256": "0x48f289d57ff818753534a4c2337d8fe7feec6501fe7e20e58a757e35b51db20e",
+			"keccak256": "0x074558a774369e425d06e0007989d26619e00d698399a366c7fc2c1431158993",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4ea315709ec8f08bb3becd8676e1d12e9d4fd243fdbec95e11a2dfb4cec15ac4",
-				"dweb:/ipfs/QmX9u8tV1tKsxE8Wu2nf17hM76erSZhmZihLksm8fQCKYc"
+				"bzz-raw://64c50dd478b04118c09ac94cfb9330754c950a5ea4ca74706c9c132f48158096",
+				"dweb:/ipfs/QmdBGT7h1pCYiY3vdTAXSuUf2zqPzGMQkUx4nypFGuYvGt"
 			]
 		},
 		"preventa/JFVToken.sol": {

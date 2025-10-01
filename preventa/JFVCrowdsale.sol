@@ -6,8 +6,10 @@ import "./JFVToken.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
 import {AccessControl} from "@openzeppelin/contracts/access/AccessControl.sol";
+import "@Openzeppelin/contracts/utils/Address.sol";
 
 contract JFVCrowdsale is ReentrancyGuard, Pausable, AccessControl {
+    using Address for address payable;
     // Roles
     bytes32 public constant PAUSER_ROLE = keccak256("PAUSER_ROLE");
     bytes32 public constant CONFIG_ROLE = keccak256("CONFIG_ROLE");
@@ -213,8 +215,13 @@ contract JFVCrowdsale is ReentrancyGuard, Pausable, AccessControl {
         if (amount == 0) revert NothingToClaim();
 
         contributed[msg.sender] = 0;
+        /*
         (bool ok, ) = payable(msg.sender).call{value: amount}("");
         require(ok, "Refund transfer failed");
+        emit Refunded(msg.sender, amount);
+        */
+         payable(msg.sender).sendValue(amount);
+
         emit Refunded(msg.sender, amount);
     }
 
@@ -222,8 +229,11 @@ contract JFVCrowdsale is ReentrancyGuard, Pausable, AccessControl {
     function withdrawETH() external nonReentrant onlyRole(CONFIG_ROLE) {
         if (!finalized || refunding) revert SoftCapNotReached();
         uint256 bal = address(this).balance;
+        /*
         (bool ok, ) = payable(wallet).call{value: bal}("");
         require(ok, "Withdraw failed");
+        */
+        payable(wallet).sendValue(bal);
     }
 
     // ========= Helpers de lectura (opcional para front) =========
