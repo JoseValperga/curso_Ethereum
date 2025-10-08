@@ -6,7 +6,7 @@ import "./JFVToken.sol";
 import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
 import {AccessControl} from "@openzeppelin/contracts/access/AccessControl.sol";
-import "@Openzeppelin/contracts/utils/Address.sol";
+import "@openzeppelin/contracts/utils/Address.sol";
 
 contract JFVCrowdsale is ReentrancyGuard, Pausable, AccessControl {
     using Address for address payable;
@@ -148,7 +148,7 @@ contract JFVCrowdsale is ReentrancyGuard, Pausable, AccessControl {
         address beneficiary
     ) external payable nonReentrant whenNotPaused {
         require(beneficiary == msg.sender, "Only self-buy");
-        
+
         if (!isOpen()) revert SaleNotOpen();
         if (beneficiary == address(0)) revert ZeroAddress();
         if (msg.value == 0) revert MinMaxViolation();
@@ -205,7 +205,6 @@ contract JFVCrowdsale is ReentrancyGuard, Pausable, AccessControl {
         } catch {
             revert MintFailed();
         }
-
         emit TGEClaimed(msg.sender, due);
     }
 
@@ -220,7 +219,7 @@ contract JFVCrowdsale is ReentrancyGuard, Pausable, AccessControl {
         require(ok, "Refund transfer failed");
         emit Refunded(msg.sender, amount);
         */
-         payable(msg.sender).sendValue(amount);
+        payable(msg.sender).sendValue(amount);
 
         emit Refunded(msg.sender, amount);
     }
