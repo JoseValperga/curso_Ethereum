@@ -1489,11 +1489,11 @@
 			]
 		},
 		"preventa/JFVToken.sol": {
-			"keccak256": "0xa6701a5ee53a1cdce31de811bcb43811e365116ab66944cb9ba1e9efa1194716",
+			"keccak256": "0xa0370727cae2695bbacabb31e38d5c03fad27b3dc55ed5b3871e112373b47d0d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://13db1d647775e5231f714dc46575bfb6f5a2268c49f58ee797e647d5960213be",
-				"dweb:/ipfs/QmVH7g5Cn99LVzxL8312aBeFmTZ2m6LL375iVw7DLsjPNr"
+				"bzz-raw://8100c2aa353bc2c4fd07ac979fa56203dc437c502f8ed5bc681b6f33f5440102",
+				"dweb:/ipfs/QmTPKtvgNQZE5RCUyiphAZhjt4QvNPzmrqbqZDs1r86qVT"
 			]
 		}
 	},
